@@ -8,13 +8,13 @@ emD = Tunnel.getInterface("vrp_discord")
 ----------------------------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while true do
-        SetDiscordAppId(680996135611269166)
+        SetDiscordAppId(703384543188615359)
 
 	    local players = emD.discord()
 		
 	    SetDiscordRichPresenceAsset('logo')
-		SetDiscordRichPresenceAssetText('Capeside')
-		SetRichPresence("https://discord.gg/Kd8uuRs")
+		SetDiscordRichPresenceAssetText('Beta City')
+		SetRichPresence("https://discord.gg/n4vrnbb")
 	    SetRichPresence("Jogadores conectados: "..players.." de 300")
 		Citizen.Wait(10000)
 	end
