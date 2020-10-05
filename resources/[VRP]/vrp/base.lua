@@ -284,17 +284,17 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 	local ids = ids
 
 	if ids ~= nil and #ids > 0 then
-		deferrals.update("[NOME] Carregando identidades.")
+		deferrals.update("[Beta] Carregando identidades.")
 		local user_id = vRP.getUserIdByIdentifiers(ids)
 		if user_id then
-			deferrals.update("[NOME] Carregando banimentos.")
+			deferrals.update("[Beta] Carregando banimentos.")
 			if not vRP.isBanned(user_id) then
-				deferrals.update("[NOME] Carregando whitelist.")
+				deferrals.update("[Beta] Carregando whitelist.")
 				if vRP.isWhitelisted(user_id) then
 					vRP.execute("vRP/update_login",{ll = os.date("%H:%M:%S %d/%m/%Y"), uid = user_id})
 					vRP.execute("vRP/update_ip",{ip = vRP.getPlayerEndpoint(source), uid = user_id})
 					if vRP.rusers[user_id] == nil then
-						deferrals.update("[NOME] Carregando banco de dados.")
+						deferrals.update("[Beta] Carregando banco de dados.")
 						local sdata = vRP.getUData(user_id,"vRP:datatable")
 
 						vRP.users[ids[1]] = user_id
@@ -320,20 +320,20 @@ AddEventHandler("queue:playerConnecting",function(source,ids,name,setKickReason,
 						deferrals.done()
 					end
 				else
-					deferrals.done("[NOME] ENTRE NO NOSSO discord.gg/Kd8uuRs PARA JOGAR! ID: "..user_id)
+					deferrals.done("[Beta] ENTRE NO NOSSO discord.gg/n4vrnbb PARA JOGAR! ID: "..user_id)
 					TriggerEvent("queue:playerConnectingRemoveQueues",ids)
 				end
 			else
-				deferrals.done("[NOME] Você foi banido da cidade: "..user_id)
+				deferrals.done("[Beta] Você foi banido da cidade: "..user_id)
 				--print(user_id)
 				TriggerEvent("queue:playerConnectingRemoveQueues",ids)
 			end
 		else
-			deferrals.done("[NOME] Ocorreu um problema de identificação.")
+			deferrals.done("[Beta] Ocorreu um problema de identificação.")
 			TriggerEvent("queue:playerConnectingRemoveQueues",ids)
 		end
 	else
-		deferrals.done("[NOME] Ocorreu um problema de identidade.")
+		deferrals.done("[Beta] Ocorreu um problema de identidade.")
 		TriggerEvent("queue:playerConnectingRemoveQueues",ids)
 	end
 end)

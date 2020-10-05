@@ -116,7 +116,7 @@ RegisterCommand('cobrar',function(source,args,rawCommand)
 			if parseInt(args[1]) < 0 then
 				--vRP.kick(source,"Vai bugar na casa do caralho! Uma LOG foi enviada para a STAFF e logo logo seu ban chega! Beijinhos do Devil :)")
 				vRPclient.setHealth(source,10)
-				TriggerClientEvent("Notify",source,"negado","Oh bom, o <b>Devil</b> já arrumou esse bug, e de presente, vai arrumar seu <b>BAN</b> seu merda.")
+				TriggerClientEvent("Notify",source,"negado","Oh bom, o <b>Jackson</b> já arrumou esse bug, e de presente, vai arrumar seu <b>BAN</b> seu merda.")
 				return
 			end
 			vRP.setBankMoney(nuser_id,parseInt(banco-args[1]))
