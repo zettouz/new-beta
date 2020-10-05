@@ -1,0 +1,64 @@
+html {
+	overflow-x: hidden !important;
+	overflow-y: hidden !important;
+	background-color: transparent !important;
+}
+
+body {
+	background-color: transparent !important;
+}
+
+#simplehud {
+	bottom: 2%;
+	right: 2%;
+	color: rgba(255,255,255,0.7);
+	font-size: 13px;
+	position: absolute !important;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+#textdiv {
+	width: 300px;
+	float: left;
+	text-align: right;
+	line-height: 16px;
+	color: rgba(255,255,255,0.5);
+	margin-top: 1px;
+}
+
+#textdiv b {
+	color: rgba(255,255,255,0.8);
+}
+
+#voice1 {
+	background: url("images/sussurro.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-left: 15px;
+}
+
+#voice2 {
+	background: url("images/normal.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-left: 15px;
+}
+
+#voice3 {
+	background: url("images/gritando.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-left: 15px;
+}
+
+#voice4 {
+	background: url("images/emergencia.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-left: 15px;
+}
+
