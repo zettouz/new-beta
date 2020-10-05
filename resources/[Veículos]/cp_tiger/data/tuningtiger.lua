@@ -1,0 +1,6 @@
+Citizen.CreateThread(function()
+	AddTextEntryByHash(GetHashKey("tiger_bau_a"),"Tuning 01")
+	AddTextEntryByHash(GetHashKey("tiger_cano_a"),"Tuning 02")
+	AddTextEntryByHash(GetHashKey("tiger_ferros_a"),"Tuning 03")
+	AddTextEntryByHash(GetHashKey("tiger_suporte_a"),"Tuning 04")
+end)
