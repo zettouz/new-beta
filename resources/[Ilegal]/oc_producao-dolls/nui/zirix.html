@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>NUI Produção de armas Zirix</title>
+        <link rel="stylesheet" type="text/css" href="zirix.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="actionmenu" style="display: none;">
+            <div class="conteudo">
+                <div class="menu">
+                    <p><b>PRODUÇÃO:</b></p>
+                </div>
+                <div class="itens">
+                    <section class="sessaoItens">
+                        <div class="conteudoItens">
+ 
+                            <div class="itemSessao item-item" category="c4">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/c4.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>C4</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-c4" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/polvora.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/fita.png">
+                                    </div>
+                                    <div class="ingreItemIII">
+                                        <img src="imagens/fios.png">
+                                    </div>
+                                    <div class="ingreItemIV">
+                                        <img src="imagens/controle.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>70x Polvoras;</li>
+                                            <li>70x Fitas;</li>
+                                            <li>70x Fios;</li>
+                                            <li>70x Controles;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="c4b">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/c4b.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>C4 Básica</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-c4b" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/polvora.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/fita.png">
+                                    </div>
+                                    <div class="ingreItemIII">
+                                        <img src="imagens/fios.png">
+                                    </div>
+                                    <div class="ingreItemIV">
+                                        <img src="imagens/controle.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>10x Polvoras;</li>
+                                            <li>10x Fitas;</li>
+                                            <li>10x Fios;</li>
+                                            <li>10x Controles;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="furadeira">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/furadeira.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>FURADEIRA</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-furadeira" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/armacaodefuradeira.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/ferro.png">
+                                    </div>
+                                    <div class="ingreItemIII">
+                                        <img src="imagens/broca.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>25x Armação de Furadeira;</li>
+                                            <li>25x Ferros;</li>
+                                            <li>25x Brocas;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="serra">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/serra.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>SERRA</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-serra" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/armacaodeserra.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/ferro.png">
+                                    </div>
+                                    <div class="ingreItemIII">
+                                        <img src="imagens/disco.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>30x Armação de Serras;</li>
+                                            <li>30x Ferros;</li>
+                                            <li>30x Discos;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="capuz">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/capuz.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>CAPUZ</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-capuz" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/pano.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/corda.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>25x Panos;</li>
+                                            <li>25x Cordas;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="algema">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/algema.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>ALGEMAS</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-algema" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/ferro.png">
+                                    </div>
+                                    <div class="ingreItemII">
+                                        <img src="imagens/chaves.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>30x Ferros;</li>
+                                            <li>30x Chaves;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="lockpick">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/lockpick.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>LOCKPICK</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-lockpick" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/ferro.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>40x Ferros;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="itemSessao item-item" category="masterpick">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/masterpick.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>MASTERPICK</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-masterpick" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/ferro.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>100x Ferros;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="itemSessao item-item" category="keycard">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/keycard.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>KEYCARD</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-keycard" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/keycard2.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>40x Cartão Reutilizável;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemSessao item-item" category="pendrivebanco">
+                                <div class="item-info">
+                                    <div class="fotoItem">
+                                        <img src="imagens/pendrive2.png">
+                                    </div>
+                                    <div class="menuItem">
+                                        <div class="nomeItem">
+                                            <p><b>PENDRIVE.B</b></p>
+                                        </div>
+                                        <div class="produzir">
+                                            <button data-action="produzir-pendrivebanco" class="menuoption"><b>MONTAR</b></button>
+                                        </div>
+                                    </div>
+                                    <div class="ingreItemI">
+                                        <img src="imagens/pendrivebanco.png">
+                                    </div>
+                                    <div class="descItem">
+                                        <ul>
+                                            <li>30x Pendrive Reutilizável;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <script src="zirix.js" type="text/javascript"></script>
+    </body>
+</html>
