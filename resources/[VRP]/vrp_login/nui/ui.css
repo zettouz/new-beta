@@ -15,6 +15,11 @@
 	src: url("Bebas-Regular.ttf") format("opentype");
   }
 
+img {
+  width: 300px;
+  height: 150px;
+}
+
 div {
   border: 0;
   outline: 0;

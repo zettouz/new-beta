@@ -1053,15 +1053,18 @@ RegisterCommand('reparar',function(source,args,rawCommand)
     if not vRPclient.isInVehicle(source) then
         local vehicle = vRPclient.getNearestVehicle(source,7)
         if vRP.hasPermission(user_id,"mecanico.permissao") then
-             vRP.tryGetInventoryItem(user_id,"ferramentas",1) 
-            TriggerClientEvent('cancelando',source,true)
-            vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
-            TriggerClientEvent("progress",source,30000,"reparando")
-            SetTimeout(30000,function()
-                TriggerClientEvent('cancelando',source,false)
-                TriggerClientEvent('reparar',source,vehicle)
-                vRPclient._stopAnim(source,false)
-            end)
+            if vRP.tryGetInventoryItem(user_id,"ferramentas",1) then
+				TriggerClientEvent('cancelando',source,true)
+				vRPclient._playAnim(source,false,{{"mini@repair","fixing_a_player"}},true)
+				TriggerClientEvent("progress",source,30000,"reparando")
+				SetTimeout(30000,function()
+					TriggerClientEvent('cancelando',source,false)
+					TriggerClientEvent('reparar',source,vehicle)
+					vRPclient._stopAnim(source,false)
+				end)
+			else
+				TriggerClientEvent("Notify",source,"negado","Precisa de uma <b>Ferramenta</b> para reparar o veículo.")
+			end
         else
             if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
                 TriggerClientEvent('cancelando',source,true)

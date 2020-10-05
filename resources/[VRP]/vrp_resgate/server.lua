@@ -81,25 +81,6 @@ RegisterCommand('pr',function(source,args,rawCommand)
 		end
 	end
 end)
--- -----------------------------------------------------------------------------------------------------------------------------------------
--- -- [ REANIMAR ] -------------------------------------------------------------------------------------------------------------------------
--- -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterCommand('reanimar',function(source,args,rawCommand)
--- 	local user_id = vRP.getUserId(source)
--- 	if vRP.hasPermission(user_id,"administrador.permissao") or vRP.hasPermission(user_id,"dmla.permissao") then
--- 		TriggerClientEvent('reanimar',source)
--- 	end
--- end)
-
--- RegisterServerEvent("reanimar:pagamento55884896")
--- AddEventHandler("reanimar:pagamento55884896",function()
--- 	local user_id = vRP.getUserId(source)
--- 	if user_id then
--- 		pagamento = math.random(50,80)
--- 		vRP.giveMoney(user_id,pagamento)
--- 		TriggerClientEvent("Notify",source,"sucesso","Recebeu <b>$"..pagamento.." dólares</b> de gorjeta do americano.")
--- 	end
--- end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- [ RE ] -------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------

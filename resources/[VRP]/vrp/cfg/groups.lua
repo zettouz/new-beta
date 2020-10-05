@@ -70,13 +70,6 @@ cfg.groups = {
 		},
 		"aprovador.permissao"
 	},
-	["NoiteCrime"] = {
-		_config = {
-			title = "NoiteCrime",
-			gtype = "altl"
-		},
-		"noiteCrime"
-	},
 	["Skin"] = {
 		_config = {
 			title = "Skin",
@@ -172,7 +165,8 @@ cfg.groups = {
 		},
 		"platina.permissao",
 		"vip.permissao"
-	},	["Platina"] = {
+	},	
+	["Platina"] = {
 		_config = {
 			title = "Platina",
 			gtype = "vip"

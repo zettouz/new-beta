@@ -32,19 +32,7 @@ end
 --[ BOTÕES ]-------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 RegisterNUICallback("ButtonClick",function(data,cb)
-	if data == "produzir-ak47" then
-		TriggerServerEvent("produzir-hospital","ak47")
-
-	elseif data == "produzir-ak74u" then
-		TriggerServerEvent("produzir-hospital","ak74u")
-
-	elseif data == "produzir-uzi" then
-		TriggerServerEvent("produzir-hospital","uzi")
-
-	elseif data == "produzir-magnum44" then
-		TriggerServerEvent("produzir-hospital","magnum44")
-
-	elseif data == "produzir-kitmedico" then
+	if data == "produzir-kitmedico" then
 		TriggerServerEvent("produzir-hospital","kitmedico")
 		timedown = 30
 
