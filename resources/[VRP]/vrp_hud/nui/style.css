@@ -86,7 +86,7 @@ body {
 .healthDisplay {
 	float: left;
 	height: 26px;
-	background: linear-gradient(45deg, rgba(255, 0, 0, 0.534) 0%, rgba(0, 0, 0, 0.452) 55%, rgba(0, 0, 0, 0.466) 100%);
+	background: #A93A14;
 	border-radius: 3px;
 	transition: all 0.10s;
 }
@@ -120,7 +120,7 @@ body {
 .thirstDisplay {
 	float: left;
 	height: 26px;
-	background: linear-gradient(45deg, rgba(255, 0, 0, 0.534) 0%, rgba(0, 0, 0, 0.452) 55%, rgba(0, 0, 0, 0.466) 100%);
+	background: #38627D;
 	border-radius: 3px;
 	transition: all 0.10s;
 }
@@ -137,7 +137,7 @@ body {
 .hungerDisplay {
 	float: left;
 	height: 26px;
-	background: linear-gradient(45deg, rgba(255, 0, 0, 0.534) 0%, rgba(0, 0, 0, 0.452) 55%, rgba(0, 0, 0, 0.466) 100%);
+	background: #A76414;
 	border-radius: 3px;
 	transition: all 0.10s;
 }
@@ -154,7 +154,7 @@ body {
 .staminaDisplay {
 	float: left;
 	height: 26px;
-	background: linear-gradient(45deg, rgba(255, 0, 0, 0.534) 0%, rgba(0, 0, 0, 0.452) 55%, rgba(0, 0, 0, 0.466) 100%);
+	background: #DB711A;
 	border-radius: 3px;
 	transition: all 0.10s;
 }
