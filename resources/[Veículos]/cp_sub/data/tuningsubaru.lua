@@ -1,0 +1,8 @@
+Citizen.CreateThread(function()
+	AddTextEntryByHash(GetHashKey("wrx_atmp_cw"),"Tuning 01")
+	AddTextEntryByHash(GetHashKey("wrx_etek_cw"),"Tuning 02")
+	AddTextEntryByHash(GetHashKey("wrx_kaput_k"),"Tuning 03")
+	AddTextEntryByHash(GetHashKey("wrx_otmp_cw"),"Tuning 04")
+	AddTextEntryByHash(GetHashKey("wrx_sp_cr"),"Tuning 05")
+	AddTextEntryByHash(GetHashKey("wrx_sp_cw"),"Tuning 06")
+end)
