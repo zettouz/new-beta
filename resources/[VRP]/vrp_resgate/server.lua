@@ -123,7 +123,7 @@ RegisterCommand('re',function(source,args,rawCommand)
 								}, 
 								footer = { 
 									text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-									icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+									icon_url = "https://i.imgur.com/IP2d2mU.png" 
 								},
 								color = 16384038 
 							}
@@ -178,7 +178,7 @@ RegisterCommand('re',function(source,args,rawCommand)
 									}, 
 									footer = { 
 										text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-										icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+										icon_url = "https://i.imgur.com/IP2d2mU.png" 
 									},
 									color = 16384038 
 								}
@@ -294,7 +294,7 @@ RegisterCommand('laudo',function(source,args,rawCommand)
 				{ 
 					title = "LAUDO MÉDICO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 					thumbnail = {
-					url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+					url = "https://i.imgur.com/IP2d2mU.png"
 					}, 
 					fields = {
 						{ 
@@ -353,7 +353,7 @@ RegisterCommand('laudo',function(source,args,rawCommand)
 					}, 
 					footer = { 
 						text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-						icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+						icon_url = "https://i.imgur.com/IP2d2mU.png" 
 					},
 					color = 16384038 
 				}

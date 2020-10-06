@@ -60,71 +60,7 @@ Citizen.CreateThread(function()
 						if func.checkItem() then
 							if func.checkRobbery(v.x,v.y,v.z) then
 								func.getItem()
-								if v.id == 1 then
-									t_roubo = 40
-								elseif v.id == 2 then
-									t_roubo = 45
-								elseif v.id == 3 then
-									t_roubo = 45
-								elseif v.id == 4 then
-									t_roubo = 38
-								elseif v.id == 5 then
-									t_roubo = 35
-								elseif v.id == 6 then
-									t_roubo = 35
-								elseif v.id == 7 then
-									t_roubo = 40
-								elseif v.id == 8 then
-									t_roubo = 45
-								elseif v.id == 9 then
-									t_roubo = 40
-								elseif v.id == 10 then
-									t_roubo = 65
-								elseif v.id == 11 then
-									t_roubo = 60
-								elseif v.id == 12 then
-									t_roubo = 45 
-								elseif v.id == 13 then
-									t_roubo = 55
-								elseif v.id == 14 then
-									t_roubo = 60
-								elseif v.id == 15 then
-									t_roubo = 50
-								elseif v.id == 16 then
-									t_roubo = 50
-								elseif v.id == 17 then
-									t_roubo = 50
-								elseif v.id == 18 then
-									t_roubo = 50
-								elseif v.id == 19 then
-									t_roubo = 50
-								elseif v.id == 20 then
-									t_roubo = 50
-								elseif v.id == 21 then
-									t_roubo = 50
-								elseif v.id == 22 then
-									t_roubo = 50
-								elseif v.id == 23 then
-									t_roubo = 50
-								elseif v.id == 24 then
-									t_roubo = 50
-								elseif v.id == 25 then
-									t_roubo = 50
-								elseif v.id == 26 then
-									t_roubo = 50
-								elseif v.id == 27 then
-									t_roubo = 70
-								elseif v.id == 28 then
-									t_roubo = 70
-								elseif v.id == 29 then
-									t_roubo = 70
-								elseif v.id == 30 then
-									t_roubo = 70
-								elseif v.id == 31 then
-									t_roubo = 70
-								elseif v.id == 32 then
-									t_roubo = 80
-								end
+								t_roubo = 40
 								local distance = GetDistanceBetweenCoords(v.x, v.y, v.z, x,y,z,true)
 								if distance <= 3 then
 									TaskGoStraightToCoord(ped, v.x,v.y,v.z,1.0, 100000, v.h, 2.0)
@@ -480,7 +416,7 @@ Citizen.CreateThread(function()
 								end
 							end
 						else
-							TriggerEvent("Notify","negado","Você não possui uma C4.")
+							TriggerEvent("Notify","negado","Você não possui uma C4 Básica.")
 						end
 					end
 				end

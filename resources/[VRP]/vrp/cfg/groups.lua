@@ -5,38 +5,16 @@ cfg.groups = {
 	-----------------------------------------------------------------------------
 	--  [ STAFF ] ---------------------------------------------------------------
 	-----------------------------------------------------------------------------
-
-	["Dono"] = {
-		_config = {
-			title = "Dono"
-		},
-		"mindmaster.permissao",
-		"player.blips",
-		"player.spec",
-		"player.noclip",
-		"player.secret",
-		"player.wall",
-		"chat2.permissao",
-		"chat.permissao"
-	},
-	["Administrador"] = {
+	["admin"] = {
 		_config = {
 			title = "Administrador(a)"
 		},
+		"mindmaster.permissao",
 		"administrador.permissao",
-		"player.blips",
-		"player.spec",
-		"player.noclip",
-		"player.secret",
-		"player.wall",
-		"chat2.permissao",
-		"chat.permissao"
-	},
-	["Moderador"] = {
-		_config = {
-			title = "Moderador(a)"
-		},
+		"admin.permissao",
 		"moderador.permissao",
+		"suporte.permissao",
+		"helper.permissao",
 		"player.blips",
 		"player.spec",
 		"player.noclip",
@@ -45,37 +23,11 @@ cfg.groups = {
 		"chat2.permissao",
 		"chat.permissao"
 	},
-	["Suporte"] = {
+	["adminoff"] = {
 		_config = {
-			title = "Suporte"
+			title = "Administrador(a) off"
 		},
-		"suporte.permissao",
-		"player.blips",
-		"player.spec",
-		"player.noclip",
-		"player.secret",
-		"chat2.permissao",
-		"chat.permissao"
-	},
-	["Helper"] = {
-		_config = {
-			title = "Ajudante"
-		},
-		"chat2.permissao",
-		"helper.permissao"
-	},
-	["Aprovador"] = {
-		_config = {
-			title = "Aprovador"
-		},
-		"aprovador.permissao"
-	},
-	["Skin"] = {
-		_config = {
-			title = "Skin",
-			gtype = "altl"
-		},
-		"skin.permissao"
+		"adminoff.permissao"
 	},
 
 	-----------------------------------------------------------------------------

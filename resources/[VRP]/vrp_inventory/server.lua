@@ -64,7 +64,7 @@ function vRPN.sendItem(itemName,amount)
 								{ 
 									title = "REGISTRO DE ITEM ENVIADO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 									thumbnail = {
-									url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+									url = "https://i.imgur.com/IP2d2mU.png"
 									}, 
 									fields = {
 										{ 
@@ -94,7 +94,7 @@ function vRPN.sendItem(itemName,amount)
 									}, 
 									footer = { 
 										text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-										icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+										icon_url = "https://i.imgur.com/IP2d2mU.png" 
 									},
 									color = 15914080 
 								}
@@ -124,7 +124,7 @@ function vRPN.sendItem(itemName,amount)
 										{ 
 											title = "REGISTRO DE ITEM ENVIADO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 											thumbnail = {
-											url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+											url = "https://i.imgur.com/IP2d2mU.png"
 											}, 
 											fields = {
 												{ 
@@ -154,7 +154,7 @@ function vRPN.sendItem(itemName,amount)
 											}, 
 											footer = { 
 												text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-												icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+												icon_url = "https://i.imgur.com/IP2d2mU.png" 
 											},
 											color = 15914080 
 										}
@@ -194,7 +194,7 @@ function vRPN.dropItem(itemName,amount)
 					{ 
 						title = "REGISTRO DE ITEM DROPADO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 						thumbnail = {
-						url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+						url = "https://i.imgur.com/IP2d2mU.png"
 						}, 
 						fields = {
 							{ 
@@ -216,7 +216,7 @@ function vRPN.dropItem(itemName,amount)
 						}, 
 						footer = { 
 							text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-							icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+							icon_url = "https://i.imgur.com/IP2d2mU.png" 
 						},
 						color = 15914080 
 					}
@@ -239,7 +239,7 @@ function vRPN.dropItem(itemName,amount)
 								{ 
 									title = "REGISTRO DE ITEM DROPADO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 									thumbnail = {
-									url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+									url = "https://i.imgur.com/IP2d2mU.png"
 									}, 
 									fields = {
 										{ 
@@ -261,7 +261,7 @@ function vRPN.dropItem(itemName,amount)
 									}, 
 									footer = { 
 										text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-										icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+										icon_url = "https://i.imgur.com/IP2d2mU.png" 
 									},
 									color = 15914080 
 								}
@@ -1139,7 +1139,7 @@ function vRPN.useItem(itemName,type,ramount)
 						{
 							title = "REGISTRO DE ITEM EQUIPADO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 							thumbnail = {
-							url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+							url = "https://i.imgur.com/IP2d2mU.png"
 							}, 
 							fields = {
 								{ 
@@ -1153,7 +1153,7 @@ function vRPN.useItem(itemName,type,ramount)
 							}, 
 							footer = { 
 								text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-								icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+								icon_url = "https://i.imgur.com/IP2d2mU.png" 
 							},
 							color = 15914080 
 						}
@@ -1190,7 +1190,7 @@ function vRPN.useItem(itemName,type,ramount)
 									{
 										title = "REGISTRO RECARREGAMENTO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 										thumbnail = {
-										url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+										url = "https://i.imgur.com/IP2d2mU.png"
 										}, 
 										fields = {
 											{ 
@@ -1204,7 +1204,7 @@ function vRPN.useItem(itemName,type,ramount)
 										}, 
 										footer = { 
 											text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-											icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+											icon_url = "https://i.imgur.com/IP2d2mU.png" 
 										},
 										color = 15914080 
 									}

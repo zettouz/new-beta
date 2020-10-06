@@ -205,7 +205,7 @@ function banK.checkRobbery(id,x,y,z,head)
 						{ 
 							title = "REGISTRO DE ASSALTO:",
 							thumbnail = {
-								url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+								url = "https://i.imgur.com/IP2d2mU.png"
 							}, 
 							fields = {
 								{ 
@@ -220,7 +220,7 @@ function banK.checkRobbery(id,x,y,z,head)
 							}, 
 							footer = { 
 								text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"),
-								icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+								icon_url = "https://i.imgur.com/IP2d2mU.png"
 							},
 							color = 15906321 
 						}

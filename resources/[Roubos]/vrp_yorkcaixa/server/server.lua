@@ -163,6 +163,7 @@ function func.getItem()
 		if vRP.tryGetInventoryItem(user_id,"c4b",1) then
 			return true
 		else
+			TriggerClientEvent("Notify",source,"aviso","Você precisa de uma <b>C4 Básica</b> para explodir o cofre.")
 			return false
 		end
 	end

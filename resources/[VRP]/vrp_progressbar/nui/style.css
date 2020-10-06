@@ -14,7 +14,7 @@
 }
 
 #innerdiv {
-	background: linear-gradient(45deg, rgba(255, 0, 0, 0.534) 0%, rgba(0, 0, 0, 0.452) 55%, rgba(0, 0, 0, 0.466) 100%);
+	background:  #887DF1;
 	height: 100%;
 	border-radius: 2px;
 }

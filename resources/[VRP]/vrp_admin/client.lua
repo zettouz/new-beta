@@ -535,3 +535,14 @@ function DrawText3Ds(x,y,z, text)
     local factor = (string.len(text)) / 370
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
 end
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LIMPAREA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("syncarea")
+AddEventHandler("syncarea",function(x,y,z)
+	Citizen.CreateThread(function()
+		ClearAreaOfVehicles(x,y,z,100.0,false,false,false,false,false)
+		ClearAreaOfEverything(x,y,z,100.0,false,false,false,false)
+	end)
+end)

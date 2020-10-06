@@ -132,6 +132,7 @@ Citizen.CreateThread(function()
 		else
 			local ped = PlayerPedId()
 			local armour = GetPedArmour(ped)
+
 			local health = (GetEntityHealth(GetPlayerPed(-1))-100)/300*100
 			local stamina = GetPlayerSprintStaminaRemaining(PlayerId())
 

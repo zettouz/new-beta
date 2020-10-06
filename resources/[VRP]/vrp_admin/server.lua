@@ -200,7 +200,7 @@ RegisterCommand('addcar',function(source,args,rawCommand)
 					{ 
 						title = "REGISTRO DE ESTOQUE:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 						thumbnail = {
-						url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+						url = "https://i.imgur.com/IP2d2mU.png"
 						}, 
 						fields = {
 							{ 
@@ -222,7 +222,7 @@ RegisterCommand('addcar',function(source,args,rawCommand)
 						}, 
 						footer = { 
 							text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-							icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+							icon_url = "https://i.imgur.com/IP2d2mU.png" 
 						},
 						color = 15914080 
 					}
@@ -255,7 +255,7 @@ RegisterCommand('remcar',function(source,args,rawCommand)
 					{ 
 						title = "REGISTRO DE ESTOQUE:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 						thumbnail = {
-						url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+						url = "https://i.imgur.com/IP2d2mU.png"
 						}, 
 						fields = {
 							{ 
@@ -277,7 +277,7 @@ RegisterCommand('remcar',function(source,args,rawCommand)
 						}, 
 						footer = { 
 							text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-							icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+							icon_url = "https://i.imgur.com/IP2d2mU.png" 
 						},
 						color = 15914080 
 					}
@@ -307,27 +307,6 @@ RegisterCommand('limpararea',function(source,args,rawCommand)
     if vRP.hasPermission(user_id,"chat.permissao") or vRP.hasPermission(user_id,"mindmaster.permissao") then
         TriggerClientEvent("syncarea",-1,x,y,z)
     end
-end)
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
---[ LIMBO ]-------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('limbo',function(source,args,rawCommand)
-    local user_id = vRP.getUserId(source)
-        if user_id then
-            local fcoords = vRP.prompt(source,"Digite SIM para sair do limbo!(Digite: SIM)","")
-            if fcoords == "sim" or fcoords == "SIM" or fcoords == "Sim" then
-                vRPclient.teleport(source,298.63,-577.36,43.13)
-                TriggerClientEvent("Notify",source,"sucesso","Você saiu do limbo!")
-            end
-            local parAmount = vRP.numPermission("Paramedico")
-                    if parseInt(#parAmount) > 1 then
-                        TriggerClientEvent("Notify",source,"negado","Existe paramédicos em serviço")
-                    end
-        elseif vRPclient.getHealth(source) <= 101 then
-                vRP.updateThirst(user_id,100)
-                vRP.updateHunger(user_id,100)
-               vCLIENT.teleportLimbo(source)
-        end        
 end)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --[ LIMPAR ARMAS ]------------------------------------------------------------------------------------------------------------------------------------------------
@@ -462,6 +441,16 @@ if message == nil or message == '' or message:sub(1, 1) == '/' then return FALSE
 PerformHttpRequest('SEUWEBHOOK', function(err, text, headers) end, 'POST', json.encode({username = name, content = message}), { ['Content-Type'] = 'application/json' })
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- TRYAREA
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('limparea',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+	local x,y,z = vRPclient.getPosition(source)
+	if vRP.hasPermission(user_id,"admin.permissao") then
+		TriggerClientEvent("syncarea",-1,x,y,z)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 --[ GOD ]--------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('god',function(source,args,rawCommand)
@@ -472,6 +461,7 @@ RegisterCommand('god',function(source,args,rawCommand)
             if nplayer then
                 vRPclient.killGod(nplayer)
 				vRPclient.setHealth(nplayer,400)
+				vRPclient.setArmour(nplayer,100)
 				
                 TriggerClientEvent("resetBleeding",nplayer)
 				TriggerClientEvent("resetDiagnostic",nplayer)
@@ -482,6 +472,7 @@ RegisterCommand('god',function(source,args,rawCommand)
         else
             vRPclient.killGod(source)
 			vRPclient.setHealth(source,400)
+			vRPclient.setArmour(source,100)
 
 			vRP.varyThirst(source,-100)
 			vRP.varyHunger(source,-100)
@@ -518,13 +509,28 @@ RegisterCommand('vida',function(source,args,rawCommand)
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- LIMPAR INVENTARIO
+-- LIMPARBOLSA
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('limpainv',function(source,args,rawCommand)
+RegisterCommand('limparbolsa',function(source,args,rawCommand)
     local user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id,"mindmaster.permissao") or vRP.hasPermission(user_id,"administrador.permissao") then
-        vRP.clearInventory(user_id)
-    end
+	local player = vRP.getUserSource(user_id)
+	if vRP.hasPermission(user_id,"admin.permissao") or vRP.hasPermission(user_id,"mod.permissao")  then
+		if args[1] then
+			local tuser_id = tonumber(args[1])
+			local tplayer = vRP.getUserSource(tonumber(tuser_id))
+			local tplayerID = vRP.getUserId (tonumber(tplayer))
+				if tplayerID ~= nil then
+				local identity = vRP.getUserIdentity(user_id)
+					vRP.clearInventory(tuser_id)
+					TriggerClientEvent("Notify",source,"sucesso","Limpou inventario do <id>"..args[1].."</b>.")
+				else
+					TriggerClientEvent("Notify",source,"negado","O usuário não foi encontrado ou está offline.")
+			end
+		else
+			vRP.clearInventory(user_id)
+			TriggerClientEvent("Notify",source,"sucesso","Você limpou seu inventário.")
+		end
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ GOD ALL ]----------------------------------------------------------------------------------------------------------------------------
@@ -647,11 +653,11 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ TUNING ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('tuning',function(source,args,rawCommand)
+RegisterCommand('tunar',function(source,args,rawCommand)
 	local user_id = vRP.getUserId(source)
 	if vRP.hasPermission(user_id,"mindmaster.permissao") then
 		TriggerClientEvent('vehtuning',source)
-		TriggerEvent("webhook:enviarlogtuning", "Comando - Tuning ", "ID "..user_id.." usou o comando /TUNING "..rawCommand:sub(4)..os.date("  **|**  ` [Data]: %d/%m/%Y [Hora]: %H:%M:%S `"))
+		TriggerEvent("webhook:enviarlogtuning", "Comando - Tunar ", "ID "..user_id.." usou o comando /Tunar "..rawCommand:sub(4)..os.date("  **|**  ` [Data]: %d/%m/%Y [Hora]: %H:%M:%S `"))
 	end
 end)
 
@@ -678,7 +684,7 @@ RegisterCommand('wl',function(source,args,rawCommand)
 					{ 
 						title = "REGISTRO DE WHITELIST:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 						thumbnail = {
-						url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+						url = "https://i.imgur.com/IP2d2mU.png"
 						}, 
 						fields = {
 							{ 
@@ -696,7 +702,7 @@ RegisterCommand('wl',function(source,args,rawCommand)
 						}, 
 						footer = { 
 							text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-							icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+							icon_url = "https://i.imgur.com/IP2d2mU.png"
 						},
 						color = 15914080 
 					}
@@ -724,7 +730,7 @@ RegisterCommand('unwl',function(source,args,rawCommand)
 					{ 
 						title = "REGISTRO DE WHITELIST:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 						thumbnail = {
-						url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+						url = "https://i.imgur.com/IP2d2mU.png"
 						}, 
 						fields = {
 							{ 
@@ -742,7 +748,7 @@ RegisterCommand('unwl',function(source,args,rawCommand)
 						}, 
 						footer = { 
 							text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-							icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+							icon_url = "https://i.imgur.com/IP2d2mU.png" 
 						},
 						color = 15914080 
 					}
@@ -772,7 +778,7 @@ RegisterCommand('kick',function(source,args,rawCommand)
 						{ 
 							title = "REGISTRO DE KICKS:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 							thumbnail = {
-							url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+							url = "https://i.imgur.com/IP2d2mU.png"
 							}, 
 							fields = {
 								{ 
@@ -790,7 +796,7 @@ RegisterCommand('kick',function(source,args,rawCommand)
 							}, 
 							footer = { 
 								text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-								icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+								icon_url = "https://i.imgur.com/IP2d2mU.png" 
 							},
 							color = 15914080 
 						}
@@ -844,7 +850,7 @@ RegisterCommand('ban',function(source,args,rawCommand)
 			 		{ 
 			 			title = "REGISTRO DE BANIMENTO:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 			 			thumbnail = {
-			 			url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png"
+			 			url = "https://i.imgur.com/IP2d2mU.png"
 			 			}, 
 			 			fields = {
 			 				{ 
@@ -858,7 +864,7 @@ RegisterCommand('ban',function(source,args,rawCommand)
 			 			}, 
 			 			footer = { 
 			 				text = os.date("\n[Data]: %d/%m/%Y [Hora]: %H:%M:%S"), 
-			 				icon_url = "https://media.discordapp.net/attachments/693350063857991680/740845174351069224/4444444_-_Copia.png" 
+			 				icon_url = "https://i.imgur.com/IP2d2mU.png" 
 			 			},
 			 			color = 15914080 
 			 		}
@@ -927,6 +933,19 @@ RegisterCommand('tpcds',function(source,args,rawCommand)
 		end
 		vRPclient.teleport(source,coords[1] or 0,coords[2] or 0,coords[3] or 0)
 	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- Toggle Admin
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand('admin',function(source,args,rawCommand)
+	local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id,"admin.permissao") then
+		vRP.removeUserGroup(user_id,"admin")
+		vRP.addUserGroup(user_id,"adminoff")
+	elseif vRP.hasPermission(user_id,"adminoff.permissao") then
+		vRP.removeUserGroup(user_id,"adminoff")
+		vRP.addUserGroup(user_id,"admin")
+    end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ COORDENADAS ]------------------------------------------------------------------------------------------------------------------------
