@@ -24,24 +24,7 @@ files {
 
 	
 	-- Background
-	'html/static/img/background/background.png',
-	'html/static/img/background/background1.png',
-	'html/static/img/background/background2.png',
-	'html/static/img/background/background3.png',
-	'html/static/img/background/background4.png',
-	'html/static/img/background/background5.png',
-	'html/static/img/background/background6.png',
-	'html/static/img/background/background7.png',
-	'html/static/img/background/background8.png',
-	'html/static/img/background/background9.png',
-	'html/static/img/background/background10.png',
-	'html/static/img/background/background11.png',
-	'html/static/img/background/background12.png',
-	'html/static/img/background/background13.png',
-	'html/static/img/background/background14.png',
-	'html/static/img/background/background15.png',
-	'html/static/img/background/background16.png',
-	'html/static/img/background/background17.png',
+	'html/static/img/background/beta.png',
 
 
 	'html/static/img/background/back001.jpg',

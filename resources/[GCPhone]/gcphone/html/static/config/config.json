@@ -42,30 +42,12 @@
   "fileUploadService_Field": "files[]",
 
   "background": {
-    "Batman": "background.png",
-    "Flash": "background1.png",
-    "Superman": "background2.png",
-
-    "Mar": "background3.png",
-    "Cobra": "background4.png",
-    "Espaço": "background5.png",
-
-    "Wynx": "background6.png",
-    "Tokyo Ghoul": "background7.png",
-    "Tokyo Ghoul Mulher": "background8.png",
-    "Policia NOME": "background9.png",
-    "The 100": "background10.png",
-    "Coringa Black": "background11.png",
-    "Black Cover": "background12.png",
-    "Coringa": "background13.png",
-    "GTR": "background14.png",
-    "Kakashi": "background15.png",
-    "Gaara": "background16.png",
+    "Beta": "beta.png",
     "Custom URL": "URL"
   },
   "background_default": {
     "label": "Wallpaper",
-    "value": "background17.png"
+    "value": "beta.png"
   },
 
 

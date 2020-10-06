@@ -79,7 +79,7 @@ function emP.checkPolice()
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		local policia = vRP.getUsersByPermission("bcso.permissao")
-		if #policia < 1 then
+		if #policia < 0 then
 			TriggerClientEvent("Notify",source,"aviso","Número insuficiente de policiais no momento.",8000)
 			return false
 		end
