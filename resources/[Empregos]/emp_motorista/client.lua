@@ -109,7 +109,7 @@ Citizen.CreateThread(function()
 						end
 					end
 				end
-
+				
 				if IsEntityAVehicle(vehicle) then
 					local vehiclespeed = GetEntitySpeed(vehicle)*2.236936
 					if math.ceil(vehiclespeed) >= 71 and timers <= 0 and payment > 0 then

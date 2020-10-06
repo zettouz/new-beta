@@ -116,9 +116,6 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1)
 		local ped = PlayerPedId()
 		if GetDistanceBetweenCoords(GetEntityCoords(ped), 133.26,96.62,83.51,true) <= 30 then --pegar emprego
-		    -- DrawText3D(-424.05,-2789.53,6.39+0.47, "~w~Entregador", 1.0, 4)
-		    -- DrawText3D(-424.05,-2789.53,6.39+0.33, "~b~Post Up", 0.9, 1)
-		    -- DrawMarker(39, -424.05,-2789.53,6.39-0.1, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 65, 105, 255, 50, 0, true, false, false)
 		    if GetDistanceBetweenCoords(GetEntityCoords(ped), 133.26,96.62,83.51,true) <= 1 then
                 if IsControlJustPressed(0,38) then	
 				    TriggerServerEvent('cp_postal:permissao')
