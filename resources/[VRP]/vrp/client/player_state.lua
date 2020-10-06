@@ -192,8 +192,7 @@ function tvRP.getWeaponsLegal()
 end
 
 function tvRP.setArmour(amount)
-	--SetPedArmour(PlayerPedId(),amount)
-	TriggerEvent("cap666",amount)
+	SetPedArmour(PlayerPedId(),amount)
 end
 
 function tvRP.getArmour()
