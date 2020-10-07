@@ -5,6 +5,8 @@ local createdCamera = 0
 
 vRP = Proxy.getInterface("vRP")
 vrpscams = {}
+local propcams = {}
+local disabledCam = false
 Tunnel.bindInterface("vrpscams", vrpscams)
 
 SCServer = Tunnel.getInterface("vrpscams","vrpscams")
@@ -15,7 +17,10 @@ Citizen.CreateThread(function()
             local ped = GetPlayerPed(PlayerId())
             local pedPos = GetEntityCoords(ped, false)
             local pedHead = GetEntityRotation(ped, 2)
-            local distance = Vdist(pedPos.x, pedPos.y, pedPos.z, SecurityCamConfig.Locations[a].camBox.x, SecurityCamConfig.Locations[a].camBox.y, SecurityCamConfig.Locations[a].camBox.z)
+            local distance = Vdist(pedPos.x, pedPos.y, pedPos.z, SecurityCamConfig.Locations[a].camBox[1].x, SecurityCamConfig.Locations[a].camBox[1].y, SecurityCamConfig.Locations[a].camBox[1].z)
+            local distance2 = Vdist(pedPos.x, pedPos.y, pedPos.z, SecurityCamConfig.Locations[a].camBox[2].x, SecurityCamConfig.Locations[a].camBox[2].y, SecurityCamConfig.Locations[a].camBox[2].z)
+
+
             if SecurityCamConfig.DebugMode then
                 Draw3DText(pedPos.x, pedPos.y, pedPos.z + 0.6, tostring("X: " .. pedPos.x))
                 Draw3DText(pedPos.x, pedPos.y, pedPos.z + 0.4, tostring("Y: " .. pedPos.y))
@@ -28,24 +33,30 @@ Citizen.CreateThread(function()
             else
                 pedAllowed = true
             end
-
             if pedAllowed then
-                if distance <= 5.0 then
-                    local box_label = SecurityCamConfig.Locations[a].camBox.label
-                    local box_x = SecurityCamConfig.Locations[a].camBox.x
-                    local box_y = SecurityCamConfig.Locations[a].camBox.y
-                    local box_z = SecurityCamConfig.Locations[a].camBox.z
+                if distance <= 5.0 or distance2 <= 5.0then
+                    local box_label = SecurityCamConfig.Locations[a].camBox[1].label
+                    local box_x = SecurityCamConfig.Locations[a].camBox[1].x
+                    local box_y = SecurityCamConfig.Locations[a].camBox[1].y
+                    local box_z = SecurityCamConfig.Locations[a].camBox[1].z
                     Draw3DText(box_x, box_y, box_z, tostring("~o~[E]~w~ Usar " .. box_label))
+                    local box_label2 = SecurityCamConfig.Locations[a].camBox[2].label
+                    local box_x2 = SecurityCamConfig.Locations[a].camBox[2].x
+                    local box_y2 = SecurityCamConfig.Locations[a].camBox[2].y
+                    local box_z2 = SecurityCamConfig.Locations[a].camBox[2].z
+                    Draw3DText(box_x2, box_y2, box_z2, tostring("~o~[E]~w~ Usar " .. box_label2))
                     
-                    if IsControlJustPressed(1, 38) and createdCamera == 0 and distance <= 1.2 then
+                    if IsControlJustPressed(1, 38) and createdCamera == 0 and (distance <= 1.2 or distance2 <= 1.2) then
                         SCServer.checkIsHackerAndPay({},function(resultado)
                             if resultado then
                                 local firstCamx = SecurityCamConfig.Locations[a].cameras[1].x
                                 local firstCamy = SecurityCamConfig.Locations[a].cameras[1].y
                                 local firstCamz = SecurityCamConfig.Locations[a].cameras[1].z
                                 local firstCamr = SecurityCamConfig.Locations[a].cameras[1].r
+                                local firstActive = SecurityCamConfig.Locations[a].cameras[1].active
+
                                 SetFocusArea(firstCamx, firstCamy, firstCamz, firstCamx, firstCamy, firstCamz)
-                                ChangeSecurityCamera(firstCamx, firstCamy, firstCamz, firstCamr)
+                                ChangeSecurityCamera(firstCamx, firstCamy, firstCamz, firstCamr, firstActive)
                                 SendNUIMessage({
                                     type = "enablecam",
                                     label = SecurityCamConfig.Locations[a].cameras[1].label,
@@ -62,7 +73,7 @@ Citizen.CreateThread(function()
                 end
             end
 
-            if createdCamera ~= 0 then
+            if createdCamera ~= 0 or disabledCam then
                 local instructions = CreateInstuctionScaleform("instructional_buttons")
                 DrawScaleformMovieFullscreen(instructions, 255, 255, 255, 255, 0)
                 SetTimecycleModifier("scanline_cam_cheap")
@@ -97,12 +108,15 @@ Citizen.CreateThread(function()
                     local newCamy = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].y
                     local newCamz = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].z
                     local newCamr = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].r
+                    local newCamActive = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].active
+
                     SetFocusArea(newCamx, newCamy, newCamz, newCamx, newCamy, newCamz)
                     SendNUIMessage({
                         type = "updatecam",
-                        label = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].label
+                        label = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].label,
+                        active = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].active
                     })
-                    ChangeSecurityCamera(newCamx, newCamy, newCamz, newCamr)
+                    ChangeSecurityCamera(newCamx, newCamy, newCamz, newCamr, newCamActive)
                     currentCameraIndexIndex = newCamIndex
                 end
 
@@ -120,12 +134,15 @@ Citizen.CreateThread(function()
                     local newCamy = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].y
                     local newCamz = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].z
                     local newCamr = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].r
+                    local newCamActive = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].active
+
                     SetFocusArea(newCamx, newCamy, newCamz, newCamx, newCamy, newCamz)
                     SendNUIMessage({
                         type = "updatecam",
-                        label = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].label
+                        label = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].label,
+                        active = SecurityCamConfig.Locations[currentCameraIndex].cameras[newCamIndex].active
                     })
-                    ChangeSecurityCamera(newCamx, newCamy, newCamz, newCamr)
+                    ChangeSecurityCamera(newCamx, newCamy, newCamz, newCamr, newCamActive)
                     currentCameraIndexIndex = newCamIndex
                 end
 
@@ -166,26 +183,68 @@ Citizen.CreateThread(function()
 end)
 
 ---------------------------------------------------------------------------
+-- SPAWN CAMERAS INITIAL
+---------------------------------------------------------------------------
+Citizen.CreateThread(function()
+        local camera_prop = "prop_cctv_cam_01a"
+        RequestModel(camera_prop)
+        while not HasModelLoaded(camera_prop) do
+            Citizen.Wait(10)
+        end
+
+        for a = 1, #SecurityCamConfig.Locations[1].cameras do
+            local loc = SecurityCamConfig.Locations[1].cameras[a]
+            local camera_prop = CreateObjectNoOffset(camera_prop, loc.x, loc.y, loc.z, 1, 0, 1)
+            propcams[loc.id] = camera_prop
+            SetEntityVisible(camera_prop, true)
+        end
+end)
+---------------------------------------------------------------------------
+-- CHECK CAMERA LIFE
+---------------------------------------------------------------------------
+Citizen.CreateThread(function()
+    while true do 
+        for a = 1, #propcams do
+            local cam = propcams[a]
+            local life = GetEntityHealth(cam)
+            if life < 1000 then 
+                local camera = {}
+                for b = 1, # SecurityCamConfig.Locations[1].cameras do 
+                    local id =  SecurityCamConfig.Locations[1].cameras[b].id
+                    if id == a then
+                        SecurityCamConfig.Locations[1].cameras[b].active = false
+                    end
+                end
+            end
+        end
+        Citizen.Wait(1000)
+    end
+end)
+---------------------------------------------------------------------------
 -- FUNCTIONS
 ---------------------------------------------------------------------------
-function ChangeSecurityCamera(x, y, z, r)
+function ChangeSecurityCamera(x, y, z, r, a)
     if createdCamera ~= 0 then
         DestroyCam(createdCamera, 0)
         createdCamera = 0
     end
-
-    local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
-    SetCamCoord(cam, x, y, z)
-    SetCamRot(cam, r.x, r.y, r.z, 2)
-    RenderScriptCams(1, 0, 0, 1, 1)
-    Citizen.Wait(250)
-    createdCamera = cam
+    if a then 
+        local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+        SetCamCoord(cam, x, y, z)
+        SetCamRot(cam, r.x, r.y, r.z, 2)
+        RenderScriptCams(1, 0, 0, 1, 1)
+        Citizen.Wait(250)
+        createdCamera = cam
+    else
+        disabledCam = true
+    end
 end
 
 function CloseSecurityCamera()
     DestroyCam(createdCamera, 0)
     RenderScriptCams(0, 0, 1, 1, 1)
     createdCamera = 0
+    disabledCam = false
     ClearTimecycleModifier("scanline_cam_cheap")
     -- SetEntityCoords(GetPlayerPed(PlayerId()), SecurityCamConfig.Locations[a].camBox.x,SecurityCamConfig.Locations[a].camBox.y,SecurityCamConfig.Locations[a].camBox.z, 0, 0, 0, 0)
     SetFocusEntity(GetPlayerPed(PlayerId()))
@@ -282,3 +341,4 @@ function InstructionButtonMessage(text)
     AddTextComponentScaleform(text)
     EndTextCommandScaleformString()
 end
+ 

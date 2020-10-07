@@ -13,7 +13,6 @@ function vrpscams.checkIsHackerAndPay()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
-		-- if vRP.hasPermission({user_id,"hacker.hack"}) and vRP.tryPayment({user_id, 500}) then
 		if vRP.hasPermission(user_id,"hacker.hack") or vRP.hasPermission(user_id,"policia.permissao") then
 			return true
 		end

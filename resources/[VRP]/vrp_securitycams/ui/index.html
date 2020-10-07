@@ -2,6 +2,10 @@
     <head>
         <title>Xander's Security Cameras</title>
         <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
             html {
                 overflow-x: hidden;
                 overflow-y: hidden;
@@ -20,10 +24,20 @@
                 font-size: 20px;
                 color: white;
             }
+            #inactiveCams{
+                margin-left: -20px;;
+                height: 100vh;
+                background: url("https://media.discordapp.net/attachments/687779413189853331/763398118904430652/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f.gif") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
         </style>
     </head>
     <body>
         <div id="Camera_Container" v-show="camerasOpen">
+            <div id="inactiveCams" v-if="!active"></div>
             <div id="Camera_Label">{{ cameraBoxLabel }}</div>
             <div id="Camera_Label">{{ cameraLabel }}</div>
         </div>

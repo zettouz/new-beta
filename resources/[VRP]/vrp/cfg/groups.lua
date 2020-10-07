@@ -41,6 +41,7 @@ cfg.groups = {
 			gtype = "job"
 		},
 		"bcso.permissao",
+		"policia.permissao",
 		"dpla.permissao",
 		"tiros.permissao",
 		"player.blips",

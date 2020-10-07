@@ -4,7 +4,8 @@ const CameraApp = new Vue({
     data: {
         camerasOpen: false,
         cameraBoxLabel: "Testing",
-        cameraLabel: "Front Left Store Camera"
+        cameraLabel: "Front Left Store Camera",
+        active: true
     },
 
     methods: {
@@ -18,8 +19,9 @@ const CameraApp = new Vue({
             this.camerasOpen = false;
         },
 
-        UpdateCameraLabel(label) {
+        UpdateCameraLabel(label, active) {
             this.cameraLabel = label;
+            this.active = active
         }
     }
 });
@@ -38,7 +40,7 @@ document.onreadystatechange = () => {
 
             } else if (event.data.type == "updatecam") {
 
-                CameraApp.UpdateCameraLabel(event.data.label);
+                CameraApp.UpdateCameraLabel(event.data.label, event.data.active);
 
             }
 
