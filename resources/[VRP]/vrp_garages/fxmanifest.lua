@@ -16,6 +16,7 @@ server_scripts {
 files {
 	'nui/index.html',
 	'nui/jquery.js',
+	'nui/loading.js',
 	"nui/img/*.jpg",
 	'nui/css.css'
 }
