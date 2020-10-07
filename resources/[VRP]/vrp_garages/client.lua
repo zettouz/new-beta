@@ -1669,19 +1669,15 @@ end)
 -- SPAWNVEHICLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback('spawnVehicles',function(data)
-    if cooldown < 1 then
-        cooldown = 3
-        vSERVER.spawnVehicles(data.name,parseInt(pointspawn))
-    end
+		vSERVER.spawnVehicles(data.name,parseInt(pointspawn))
+		SendNUIMessage({ action = "dimissLoader" })
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELETEVEHICLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback('deleteVehicles',function(data)
-    if cooldown < 1 then
-        cooldown = 3
-        vSERVER.deleteVehicles()
-    end
+		vSERVER.deleteVehicles()
+		SendNUIMessage({ action = "dimissLoader" })
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLECLIENTLOCK

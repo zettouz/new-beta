@@ -16,13 +16,18 @@ $(document).ready(function(){
 			case 'updateGarages':
 				updateGarages();
 			break;
+
+			case 'dimissLoader':
+				closeLoader()
+			break;
 		}
 	});
 
 	document.onkeyup = function(data){
 		if (data.which == 27){
 			sendData("ButtonClick","exit")
-			$('#garagem').loading('toggle')
+
+			 $('#custom-overlay').hide()
 		}
 	};
 });
@@ -41,6 +46,11 @@ const formatarNumero = (n) => {
 
 const sendData = (name,data) => {
 	$.post("http://vrp_garages/"+name,JSON.stringify(data),function(datab){});
+}
+
+const closeLoader = ()=> {
+	$('#custom-overlay').hide()
+	return true
 }
 
 const updateGarages = () => {
@@ -81,9 +91,7 @@ $(document).on('click','.item',function(){
 $(document).on('click','.retirar',function(){
 	let $el = $('.item.active');
 	if($el) {
-		$('#garagem').loading({
-			overlay: $("#custom-overlay")
-		  });
+		$('#custom-overlay').show()
 		$.post('http://vrp_garages/spawnVehicles',JSON.stringify({
 			name: $el.attr('data-item-name')
 		}));
@@ -91,8 +99,6 @@ $(document).on('click','.retirar',function(){
 })
 
 $(document).on('click','.guardar',function(){
-	$('#garagem').loading({
-		overlay: $("#custom-overlay")
-	  });
+	$('#custom-overlay').show()
 	$.post('http://vrp_garages/deleteVehicles',JSON.stringify({}));
 })
