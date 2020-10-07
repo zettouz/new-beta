@@ -49,7 +49,7 @@ img { border:none; }
 	float: left;
 	border-radius: 5px;
 	padding: 10px 0;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #887DF1;
 }
 
 .item-text {
@@ -77,12 +77,10 @@ img { border:none; }
 
 .item:hover {
 	background: rgba(0,0,0,0.7);
-	border: 1 solid #887DF1;
 }
 
 .item.active {
-	background: rgba(0,0,0,0.9);
-	border: 1 solid #887DF1;
+	background:rgba(136,125,241, 0.7) ;
 }
 
 .retirar {
