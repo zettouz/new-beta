@@ -77,10 +77,12 @@ img { border:none; }
 
 .item:hover {
 	background: rgba(0,0,0,0.7);
+	border: 1 solid #887DF1;
 }
 
 .item.active {
 	background: rgba(0,0,0,0.9);
+	border: 1 solid #887DF1;
 }
 
 .retirar {
