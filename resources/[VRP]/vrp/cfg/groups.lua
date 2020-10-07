@@ -17,6 +17,7 @@ cfg.groups = {
 		"helper.permissao",
 		"player.blips",
 		"player.spec",
+		"blips.permissao",
 		"player.noclip",
 		"player.secret",
 		"player.wall",

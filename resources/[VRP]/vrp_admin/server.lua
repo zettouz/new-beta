@@ -612,8 +612,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 local qtdAmmunition = 250
 local itemlist = {
-    ["WEAPON_PISTOL_MK1"] = { arg = "fiveseven" },
-    ["WEAPON_ASSAULTSMG"] = { arg = "mtar21" },
+    ["WEAPON_PISTOL_MK2"] = { arg = "fiveseven" },
+    ["WEAPON_ASSAULTSMG"] = { arg = "ar" },
     ["WEAPON_ASSAULTRIFLE"] = { arg = "ak103" }
 }
 
