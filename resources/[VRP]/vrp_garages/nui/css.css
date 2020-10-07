@@ -31,7 +31,7 @@ img { border:none; }
 	background: rgb(217,217,217);
     background: linear-gradient(180deg, rgba(217,217,217,0) 0%, rgba(0,0,0,0.5) 72%);
 	border-radius: 10px;
-	border-bottom: 2px solid #f6c23e;
+	border-bottom: 2px solid#887DF1;
 }
 
 #buttons {
@@ -80,7 +80,7 @@ img { border:none; }
 }
 
 .item.active {
-	background:rgba(136,125,241, 0.7) ;
+	background:rgba(136,125,241, 0.3) ;
 }
 
 .retirar {
@@ -97,8 +97,8 @@ img { border:none; }
 }
 
 .guardar {
-	color: #2d2204;
-	background: rgba(220,170,15,0.6);
+	color: #fff;
+	background: rgba(136,125,241, 0.3);
 	width: 150px;
 	padding: 10px 0;
 	text-align: center;
@@ -106,7 +106,7 @@ img { border:none; }
 	border-radius: 4px;
 	float: left;
 	margin: 0 10px;
-	border-bottom: 3px solid #2d2204;
+	border-bottom: 3px solid rgba(136,125,241, 0.3);
 }
 
 .retirar:active, .guardar:active {
@@ -120,7 +120,7 @@ img { border:none; }
 
 .guardar:hover {
 	color: #2d2204;
-	background: rgba(220,170,15,0.7);
+	background: rgba(136,125,241, 0.7);
 }
 
 .red {
