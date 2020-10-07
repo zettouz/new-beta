@@ -22,6 +22,7 @@ $(document).ready(function(){
 	document.onkeyup = function(data){
 		if (data.which == 27){
 			sendData("ButtonClick","exit")
+			$('#garagem').loading('toggle')
 		}
 	};
 });
