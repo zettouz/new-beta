@@ -81,7 +81,9 @@ $(document).on('click','.item',function(){
 $(document).on('click','.retirar',function(){
 	let $el = $('.item.active');
 	if($el) {
-		$('#garagem').loading();
+		$('#garagem').loading({
+			overlay: $("#custom-overlay")
+		  });
 		$.post('http://vrp_garages/spawnVehicles',JSON.stringify({
 			name: $el.attr('data-item-name')
 		}));
@@ -89,6 +91,8 @@ $(document).on('click','.retirar',function(){
 })
 
 $(document).on('click','.guardar',function(){
-	$('#garagem').loading();
+	$('#garagem').loading({
+		overlay: $("#custom-overlay")
+	  });
 	$.post('http://vrp_garages/deleteVehicles',JSON.stringify({}));
 })
