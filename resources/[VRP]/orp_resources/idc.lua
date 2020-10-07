@@ -21,13 +21,14 @@ SVIDclient = Tunnel.getInterface("vrp_id")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- variavels de Configuração
 -----------------------------------------------------------------------------------------------------------------------------------------
-local distancia = 500
+local distancia = 300
 local mostraSeuID = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- variavels de Função
 -----------------------------------------------------------------------------------------------------------------------------------------
 local players = {}
-local admim= {}
+local admin= {}
+local blips = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Esse loop cria um array (table) com as informações de ids - Se fizer direto no loop do DRAWTEXT ele tem um delay ao mostrar o id (fica piscando)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -35,13 +36,13 @@ Citizen.CreateThread(
     function()
         while true do
             Citizen.Wait(1000)
-
             for id = 0, 256 do 
                 if NetworkIsPlayerActive(id) then
                     if GetPlayerPed(id) ~= PlayerId() then           
                         local pid = SVIDclient.getId(GetPlayerServerId(id))
-                        players[id] = pid
-                        admim = SVIDclient.getPermissao()
+                        local name = SVIDclient.getNome(GetPlayerServerId(id))
+                        players[id] = "<b>"..pid.." "..name.."</b>"
+                        admin = SVIDclient.getPermissao()
                     end
                 end
             end
@@ -55,19 +56,30 @@ Citizen.CreateThread(
 	function()
 	    while true do
 	    	Citizen.Wait(5)
-	      	if IsControlPressed(1,288) then
+	      	if blips then
 		        for _, id in ipairs(GetActivePlayers()) do
 			        x1, y1, z1 = table.unpack( GetEntityCoords( PlayerPedId(), true ) )
 			        x2, y2, z2 = table.unpack( GetEntityCoords( GetPlayerPed( id ), true ) )
 			        distance = math.floor(GetDistanceBetweenCoords(x1,  y1,  z1,  x2,  y2,  z2,  true))
-			    	if admim and (PlayerPedId() ~= GetPlayerPed( id ) or mostraSeuID)then
+			    	if admin and (PlayerPedId() ~= GetPlayerPed( id ) or mostraSeuID)then
 				    	if ((distance < distancia)) then
-				    		DrawText3D(x2, y2, z2+1, players[id], 255, 255, 255)
+				    		DrawText3D(x2, y2, z2+1.4, players[id], 255, 255, 255)
 				    	end
 				    end
 				end
 			end
 	    end
+end)
+
+
+RegisterCommand("blips",function(source,args)
+    if admin then
+        if blips then
+            blips = false
+        else
+            blips = true
+        end
+    end    
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- cria o texto 3D
@@ -80,7 +92,7 @@ function DrawText3D(x,y,z, text, r,g,b)
     local scale = (1/dist)*2
     local fov = (1/GetGameplayCamFov())*100
     local scale = scale*fov
-   
+
     if onScreen then
         SetTextFont(0)
         SetTextProportional(1)

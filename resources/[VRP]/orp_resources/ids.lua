@@ -33,6 +33,12 @@ function vRPidd.getId(sourceplayer)
 	local user_id = vRP.getUserId(sourceplayer)
 	return user_id
 end
+
+function vRPidd.getNome(sourceplayer)
+	local user_id = vRP.getUserId(sourceplayer)
+	local identity = vRP.getUserIdentity(user_id)
+	return ""..identity.name.." "..identity.firstname..""
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Esconde os ids
 -----------------------------------------------------------------------------------------------------------------------------------------	
