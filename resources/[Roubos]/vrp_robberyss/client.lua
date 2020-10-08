@@ -16,36 +16,31 @@ vSERVER = Tunnel.getInterface("vrp_robberys")
 local robbery = false
 local timedown = 0
 local robmark = nil
-local coordenadaX = nil
-local coordenadaY = nil
-local coordenadaZ = nil
-local h = nil
-local robberyId = nil
---Game
-local game = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ROBBERS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local robbers = {
-	[1] = { ['x'] = 2549.43 , ['y'] = 384.90 , ['z'] = 108.62 , h = 80.0 },
-	[2] = { ['x'] = 1159.67 , ['y'] = -313.91 , ['z'] = 69.20 , h = 100.0 },
-	[3] = { ['x'] = 28.27 , ['y'] = -1339.48 , ['z'] = 29.49 , h = 0.0 },
-	[4] = { ['x'] = -709.59 , ['y'] = -904.10 , ['z'] = 19.21 , h = 90.0 },
-	[5] = { ['x'] = -43.23 , ['y'] = -1748.475 , ['z'] = 29.42 , h = 50.0 },
-	[6] = { ['x'] = 378.17 , ['y'] = 333.12 , ['z'] = 103.56 , h = 340.0 },
-	[7] = { ['x'] = -3249.79 , ['y'] = 1004.40 , ['z'] = 12.83 , h = 80.0 },
-	[8] = { ['x'] = 1734.72 , ['y'] = 6420.65 , ['z'] = 35.03 , h = 330.0 },
-	[9] = { ['x'] = 546.37 , ['y'] = 2662.89 , ['z'] = 42.15 , h = 190.0 },
-	[10] = { ['x'] = 1959.38 , ['y'] = 3748.83 , ['z'] = 32.34 , h = 30.0 },
-	[11] = { ['x'] = 2672.90 , ['y'] = 3286.58 , ['z'] = 55.24 , h = 60.0 },
-	[12] = { ['x'] = 1707.93 , ['y'] = 4920.44 , ['z'] = 42.06 , h = 320.0 },
-	[13] = { ['x'] = -1829.23 , ['y'] = 798.76 , ['z'] = 138.19 , h = 120.0 },
-	[14] = { ['x'] = -2959.6530761719 , ['y'] = 387.15814208984 , ['z'] = 14.043292045593 , h = 120.0 },
-	[15] = { ['x'] = -3047.8452148438 , ['y'] = 585.58239746094 , ['z'] = 7.9089341163635 , h = 120.0 },
-	[16] = { ['x'] = 1126.7380371094 , ['y'] = -980.08770751953 , ['z'] = 45.415802001953 , h = 120.0 },
-	[17] = { ['x'] = 1169.2357177734 , ['y'] = 2717.8078613281 , ['z'] = 37.157688140869 , h = 120.0 },
-	[18] = { ['x'] = -1478.8679199219 , ['y'] = -375.4377746582 , ['z'] = 39.163368225098 , h = 120.0 },
-	[19] = { ['x'] = -1220.8117675781 , ['y'] = -915.96331787109 , ['z'] = 11.326335906982 , h = 120.0 }
+	[1] = { ['x'] = 28.25, ['y'] = -1339.22, ['z'] = 29.5 },
+	[2] = { ['x'] = 2549.25, ['y'] = 384.93, ['z'] = 108.63 },
+	[3] = { ['x'] = 1159.53, ['y'] = -314.11, ['z'] = 69.21 },
+	[4] = { ['x'] = -709.68, ['y'] = -904.08, ['z'] = 19.22 },
+	[5] = { ['x'] = -43.44, ['y'] = -1748.46, ['z'] = 29.43 },
+	[6] = { ['x'] = 378.1, ['y'] = 333.4, ['z'] = 103.57 },
+	[7] = { ['x'] = -3250.01, ['y'] = 1004.45, ['z'] = 12.84 },
+	[8] = { ['x'] = 1734.66, ['y'] = 6420.88, ['z'] = 35.04 },
+	[9] = { ['x'] = 546.5, ['y'] = 2662.84, ['z'] = 42.16 },
+	[10] = { ['x'] = 1959.25, ['y'] = 3748.87, ['z'] = 32.35 },
+	[11] = { ['x'] = 2672.86, ['y'] = 3286.75, ['z'] = 55.25 },
+	[12] = { ['x'] = 1707.86, ['y'] = 4920.41, ['z'] = 42.07 },
+	[13] = { ['x'] = -1829.22, ['y'] = 798.86, ['z'] = 138.2 },
+	--[14] = { ['x'] = 1394.96, ['y'] = 3613.92, ['z'] = 34.99 },
+	[15] = { ['x'] = -2959.49, ['y'] = 387.15, ['z'] = 14.05 },
+	[16] = { ['x'] = -3047.85, ['y'] = 585.73, ['z'] = 7.91 },
+	[17] = { ['x'] = 1126.89, ['y'] = -980.15, ['z'] = 45.42 },
+	[18] = { ['x'] = 1169.23, ['y'] = 2717.86, ['z'] = 37.16 },
+	[19] = { ['x'] = -1479.03, ['y'] = -375.45, ['z'] = 39.17 },
+	[20] = { ['x'] = -1220.88, ['y'] = -915.91, ['z'] = 11.33 },
+	[21] = { ['x'] = 169.02, ['y'] = 6644.55, ['z'] = 31.72 }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ROBBERSBUTTON
@@ -53,67 +48,37 @@ local robbers = {
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(5)
-		-- SetNuiFocus(false, false)
-		local ped = PlayerPedId()
-		-- ClearPedTasks(ped)
 		if not robbery then
+			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			for k,v in pairs(robbers) do
 				local distance = Vdist(x,y,z,v.x,v.y,v.z)
 				if distance <= 1.1 and GetEntityHealth(ped) > 101 then
 					drawText("PRESSIONE  ~r~E~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) and timedown <= 0 and vSERVER.checkPermission() then
+					if IsControlJustPressed(0,38) and timedown <= 0 then
+						timedown = 3
 						if vSERVER.checkPolice() then
-							local ped = PlayerPedId()
-							SetEntityCoords(ped,v.x,v.y,v.z-1)
-							SetEntityHeading(ped,v.h)
-							game = true
-							SendNUIMessage({
-								type = "startgame"
-							})
-							SetNuiFocus(true, true)
-							vRP._playAnim(false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female", 1}},true)
-
-							vSERVER.startRobbery(k,v.x,v.y,v.z,v.h)
+							vSERVER.startRobbery(k,v.x,v.y,v.z)
 						end
 					end
 				end
 			end
 		else
-			if IsControlJustPressed(0,244) or GetEntityHealth(ped) <= 101 then
+			drawText("PARA CANCELAR O ROUBO SAIA PELA PORTA DA FRENTE",4,0.5,0.88,0.36,255,255,255,50)
+			drawText("AGUARDE ~g~"..timedown.." SEGUNDOS~w~ ATÉ QUE TERMINE O ROUBO",4,0.5,0.9,0.46,255,255,255,150)
+			if GetEntityHealth(PlayerPedId()) <= 101 then
 				robbery = false
-				timedown = 0
 				vSERVER.stopRobbery()
-				ClearPedTasks(ped)
 			end
-			drawText("APERTE ~r~M~w~ PARA CANCELAR O ROUBO EM ANDAMENTO",4,0.5,0.88,0.36,255,255,255,50)
-			if timedown ~= 0 then
-				drawText("AGUARDE ~g~"..timedown.." SEGUNDOS~w~ ATÉ QUE TERMINE O ROUBO",4,0.5,0.9,0.46,255,255,255,150)
-			end
-			DisableControlAction(0,288,true)
-			DisableControlAction(0,289,true)
-			DisableControlAction(0,170,true)
-			DisableControlAction(0,166,true)
-			DisableControlAction(0,187,true)
-			DisableControlAction(0,189,true)
-			DisableControlAction(0,190,true)
-			DisableControlAction(0,188,true)
-			DisableControlAction(0,57,true)
-			DisableControlAction(0,73,true)
-			DisableControlAction(0,167,true)
-			DisableControlAction(0,311,true)
-			DisableControlAction(0,344,true)
-			DisableControlAction(0,29,true)
-			DisableControlAction(0,182,true)
-			DisableControlAction(0,245,true)
 		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTROBBERY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function src.startRobbery(x2,y2,z2,h)
+function src.startRobbery(time,x2,y2,z2)
 	robbery = true
+	timedown = time
 	SetPedComponentVariation(PlayerPedId(),5,45,0,2)
 	Citizen.CreateThread(function()
 		while robbery do
@@ -121,21 +86,12 @@ function src.startRobbery(x2,y2,z2,h)
 			local ped = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			local distance = Vdist(x,y,z,x2,y2,z2)
-			coordenadaX = x
-			coordenadaY = y
-			coordenadaZ = z
-			head = h
 			if distance >= 10.0 then
 				robbery = false
 				vSERVER.stopRobbery()
 			end
 		end
 	end)
-end
-
-function src.startGrab(time)
-	timedown = time
-	return true
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTROBBERYPOLICE
@@ -170,16 +126,8 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1000)
 		if timedown >= 1 then
 			timedown = timedown - 1
-			local ped = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(ped))
-			local distance = Vdist(x,y,z,coordenadaX,coordenadaY,coordenadaZ)
-			if distance >= 1.0 or not GetSelectedPedWeapon(ped) == GetHashKey("WEAPON_UNARMED") then
-				-- robbery = false
-				-- ClearPedTasks(ped)
-			end
 			if timedown == 0 then
 				robbery = false
-				ClearPedTasks(GetPlayerPed(-1))
 			end
 		end
 	end
@@ -197,30 +145,3 @@ function drawText(text,font,x,y,scale,r,g,b,a)
 	AddTextComponentString(text)
 	DrawText(x,y)
 end
-
-RegisterNUICallback("win", function(data, cb)
-	if game then 
-		game = false
-		SendNUIMessage({
-			type = "close"
-		})
-		SetNuiFocus(false, false)
-		local ped = PlayerPedId()
-		ClearPedTasks(ped)
-		TriggerServerEvent("robberys:win")
-	end
-end)
-
-RegisterNUICallback("lose", function(data, cb)
-	if game then 
-		game = false
-		SendNUIMessage({
-			type = "close"
-		})
-		SetNuiFocus(false, false)
-		local ped = PlayerPedId()
-		robbery = false
-		ClearPedTasks(ped)
-		TriggerServerEvent("robberys:lose")
-	end
-end)
