@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
 							})
 							SetNuiFocus(true, true)
 							vRP._playAnim(false,{{"amb@prop_human_parking_meter@female@idle_a","idle_a_female", 1}},true)
-
+							
 							vSERVER.startRobbery(k,v.x,v.y,v.z,v.h)
 						end
 					end
@@ -142,7 +142,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function src.startRobberyPolice(x,y,z,localidade)
 	if not DoesBlipExist(robmark) then
-		robmark = AddBlipForCoord(x,y,z)
+		robmark = AddBlipForCoord(coordenadaX,coordenadaY,coordenadaZ)
 		SetBlipScale(robmark,0.5)
 		SetBlipSprite(robmark,161)
 		SetBlipColour(robmark,59)

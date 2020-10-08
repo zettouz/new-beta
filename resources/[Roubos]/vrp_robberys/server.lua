@@ -84,7 +84,6 @@ function src.startRobbery(robberyId,x,y,z,h)
 		x = x
 		y = y 
 		z = z
-
 		vCLIENT.startRobbery(source,x,y,z,h)
 	end
 end
