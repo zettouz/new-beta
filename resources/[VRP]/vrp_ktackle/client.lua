@@ -46,17 +46,19 @@ end)
 
 RegisterNetEvent('jackson:getTackled')
 AddEventHandler('jackson:getTackled', function(target)
+	print('getTackled')
+
 	isGettingTackled = true
 
 	local playerPed = GetPlayerPed(-1)
 	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+
 
 	RequestAnimDict(tackleLib)
 
 	while not HasAnimDictLoaded(tackleLib) do
 		Citizen.Wait(10)
 	end
-
 	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 11816, 0.25, 0.5, 0.0, 0.5, 0.5, 180.0, false, false, false, false, 2, false)
 	TaskPlayAnim(playerPed, tackleLib, tackleVictimAnim, 8.0, -8.0, 3000, 0, 0, false, false, false)
 
@@ -72,6 +74,8 @@ end)
 
 RegisterNetEvent('jackson:playTackle')
 AddEventHandler('jackson:playTackle', function()
+	print('playTackle')
+
 	local playerPed = GetPlayerPed(-1)
 
 	RequestAnimDict(tackleLib)
@@ -85,24 +89,29 @@ AddEventHandler('jackson:playTackle', function()
 	Citizen.Wait(3000)
 
 	isTackling = false
+end)
 
+
+RegisterNetEvent('jackson:updateTackle')
+AddEventHandler('jackson:updateTackle', function()
+	isTackling = false
+	failed = true
 end)
 
 -- Main thread
 Citizen.CreateThread(function()
-
 	while true do
 		Wait(0)
-
-		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['G']) and not isTackling and GetGameTimer() - lastTackleTime > 10 * 1000 then
+		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['E']) and not isTackling and (GetGameTimer() - lastTackleTime > 10 * 1000 or failed) then
 			Citizen.Wait(10)
-			local nplayer = ESX.Game.GetClosestPlayer()
-
-			if distance ~= -1 and distance <= Config.TackleDistance and not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) and not IsPedInAnyVehicle(GetPlayerPed(closestPlayer)) then
+			local playerCoords = GetEntityCoords(GetPlayerPed(-1))
+			local ped = GetClosestPed(playerCoords.x,playerCoords.y,playerCoords.z)
+			print(ped)
+			if not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) then
 				isTackling = true
 				lastTackleTime = GetGameTimer()
-
-				TriggerServerEvent('jackson:tryTackle', GetPlayerServerId(closestPlayer))
+				failed = false
+				TriggerServerEvent('jackson:tryTackle')
 			end
 		end
 	end
