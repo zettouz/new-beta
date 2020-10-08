@@ -21,7 +21,7 @@ AddEventHandler('jackson:tryTackle', function()
 	
 	if nplayer then
 		local nuserId = vRP.getUserId(nplayer)
-		if not vRPclient.isHandcuffed(source) and not IsPedInAnyVehicle(GetPlayerPed(-1)) and (vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao")) then
+		if not vRPclient.isHandcuffed(source) and (vRP.hasPermission(user_id,"policia.permissao") or vRP.hasPermission(user_id,"admin.permissao")) then
 			TriggerClientEvent('jackson:getTackled', nplayer, source)
 			TriggerClientEvent('jackson:playTackle', source)
 		else
