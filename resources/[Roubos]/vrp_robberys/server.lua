@@ -75,15 +75,15 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTROBBERY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function src.startRobbery(robberyId,x,y,z,h)
+function src.startRobbery(robberyId,x1,y1,z1,h)
 	local source = source
 	local user_id = vRP.getUserId(source)
 	if user_id then
 		robbery = true
 		id = robberyId
-		x = x
-		y = y 
-		z = z
+		x = x1
+		y = y1 
+		z = z1
 		vCLIENT.startRobbery(source,x,y,z,h)
 	end
 end
