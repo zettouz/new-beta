@@ -142,7 +142,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function src.startRobberyPolice(x,y,z,localidade)
 	if not DoesBlipExist(robmark) then
-		robmark = AddBlipForCoord(coordenadaX,coordenadaY,coordenadaZ)
+		robmark = AddBlipForCoord(x,y,z)
 		SetBlipScale(robmark,0.5)
 		SetBlipSprite(robmark,161)
 		SetBlipColour(robmark,59)
