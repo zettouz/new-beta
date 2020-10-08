@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -- CONEXÃO
 -----------------------------------------------------------------------------------------------------------------------------------------
 src = {}
-Tunnel.bindInterface("vrp_ktable",src)
-vSERVER = Tunnel.getInterface("vrp_ktable")
+Tunnel.bindInterface("vrp_ktackle",src)
+vSERVER = Tunnel.getInterface("vrp_ktackle")
 
 
 local Keys = {

@@ -9,8 +9,8 @@ vRPclient = Tunnel.getInterface("vRP")
 -- CONEXÃO
 -----------------------------------------------------------------------------------------------------------------------------------------
 src = {}
-Tunnel.bindInterface("vrp_ktable",src)
-vCLIENT = Tunnel.getInterface("vrp_ktable")
+Tunnel.bindInterface("vrp_ktackle",src)
+vCLIENT = Tunnel.getInterface("vrp_ktackle")
 
 RegisterServerEvent('jackson:tryTackle')
 AddEventHandler('jackson:tryTackle', function()
