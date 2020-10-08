@@ -72,6 +72,28 @@ AddEventHandler('jackson:getTackled', function(target)
 	isGettingTackled = false
 end)
 
+function GetNearPlayer()
+    local players = GetPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = GetDistanceBetweenCoords(targetCoords['x'], targetCoords['y'], targetCoords['z'], plyCoords['x'], plyCoords['y'], plyCoords['z'], true)
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+
+    return closestPlayer, closestDistance
+end
+
 RegisterNetEvent('jackson:playTackle')
 AddEventHandler('jackson:playTackle', function()
 	print('playTackle')
@@ -105,9 +127,11 @@ Citizen.CreateThread(function()
 		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['E']) and not isTackling and (GetGameTimer() - lastTackleTime > 10 * 1000 or failed) then
 			Citizen.Wait(10)
 			local playerCoords = GetEntityCoords(GetPlayerPed(-1))
-			local ped = GetClosestPed(playerCoords.x,playerCoords.y,playerCoords.z)
-			print(ped)
-			if not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) then
+			local nplayer, distance = GetNearPlayer()
+			print(nplayer)
+			print(distance)
+
+			if distance <= 2 and not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) then
 				isTackling = true
 				lastTackleTime = GetGameTimer()
 				failed = false
