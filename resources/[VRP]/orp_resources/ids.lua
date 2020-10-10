@@ -13,7 +13,7 @@ vRPidd = {}
 Tunnel.bindInterface("vrp_id",vRPidd)
 Proxy.addInterface("vrp_id",vRPidd)
 vRP = Proxy.getInterface("vRP")
-
+local blipsActive = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Retorna a permissao pro client
 -----------------------------------------------------------------------------------------------------------------------------------------	
@@ -41,4 +41,23 @@ function vRPidd.getNome(sourceplayer)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Esconde os ids
------------------------------------------------------------------------------------------------------------------------------------------	
+-----------------------------------------------------------------------------------------------------------------------------------------
+function vRPidd.getUseBlip(sourceplayer)
+	local user_id = vRP.getUserId(source)
+
+	return blipsActive[user_id]
+end	
+function vRPidd.addUseBlip(sourceplayer)
+	local source = source
+	local user_id = vRP.getUserId(source)
+
+	blipsActive[user_id] = true
+	return user_id
+end
+function vRPidd.remUseBlip(sourceplayer)
+	local source = source
+	local user_id = vRP.getUserId(source)
+
+	blipsActive[user_id] = false
+	return user_id
+end

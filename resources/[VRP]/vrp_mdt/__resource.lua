@@ -13,7 +13,6 @@ files {
 
 server_scripts {
 	"@vrp/lib/utils.lua",
-	'@async/async.lua',
 	'@mysql-async/lib/MySQL.lua',
 	"sv_mdt.lua",
 	"sv_vehcolors.lua"

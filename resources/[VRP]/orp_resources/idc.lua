@@ -22,7 +22,7 @@ SVIDclient = Tunnel.getInterface("vrp_id")
 -- variavels de Configuração
 -----------------------------------------------------------------------------------------------------------------------------------------
 local distancia = 300
-local mostraSeuID = false
+local mostraSeuID = true
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- variavels de Função
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -41,7 +41,17 @@ Citizen.CreateThread(
                     if GetPlayerPed(id) ~= PlayerId() then           
                         local pid = SVIDclient.getId(GetPlayerServerId(id))
                         local name = SVIDclient.getNome(GetPlayerServerId(id))
-                        players[id] = "<b>"..pid.." "..name.."</b>"
+                        local ped = GetPlayerPed(id)
+
+                        local armour = GetPedArmour(ped)
+                        local health = (GetEntityHealth(ped)-100)/300*100
+                        if SVIDclient.getUseBlip(ped) then
+                            players[id] = {['text']= "<b><i>&#8721;</i> "..pid.." "..name.."</b>", ['health'] = health, ['armour'] = armour }
+                        else
+                            players[id] = {['text']= "<b>"..pid.." "..name.."</b>", ['health'] = health, ['armour'] = armour }
+                            
+                        end
+
                         admin = SVIDclient.getPermissao()
                     end
                 end
@@ -62,7 +72,8 @@ Citizen.CreateThread(
 			        x2, y2, z2 = table.unpack( GetEntityCoords( GetPlayerPed( id ), true ) )
 			        distance = math.floor(GetDistanceBetweenCoords(x1,  y1,  z1,  x2,  y2,  z2,  true))
 			    	if admin and (PlayerPedId() ~= GetPlayerPed( id ) or mostraSeuID)then
-				    	if ((distance < distancia)) then
+                        if ((distance < distancia)) then
+                           
 				    		DrawText3D(x2, y2, z2+1.4, players[id], 255, 255, 255)
 				    	end
 				    end
@@ -74,37 +85,51 @@ end)
 
 RegisterCommand("blips",function(source,args)
     if admin then
+
         if blips then
+            SVIDclient.remUseBlip()
             blips = false
         else
+            SVIDclient.addUseBlip()
             blips = true
         end
     end    
 end)
+--Draw this at every frame
+function drawProgressBar(x, y, width, height, colour, percent)
+    local w = width * (percent/100)
+    local x = (x - (width * (percent/100))/2)-width/2    
+    DrawRect(x+w, y, w, height, colour[1], colour[2], colour[3], colour[4])
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- cria o texto 3D
 -----------------------------------------------------------------------------------------------------------------------------------------
-function DrawText3D(x,y,z, text, r,g,b)
+function DrawText3D(x,y,z, player, r,g,b, health,armor)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
     local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
- 
+
     local scale = (1/dist)*2
     local fov = (1/GetGameplayCamFov())*100
-    local scale = scale*fov
+    local scale = 100
 
-    if onScreen then
+    if onScreen and player then
         SetTextFont(0)
         SetTextProportional(1)
-        SetTextScale(0.0, 0.40)
-        SetTextColour(r, g, b, 255)
+        SetTextScale(0.0, 0.35)
+        SetTextColour(r, g, b, 186)
         SetTextDropshadow(0, 0, 0, 0, 255)
         SetTextEdge(2, 0, 0, 0, 150)
         SetTextDropShadow()
         SetTextOutline()
         SetTextEntry("STRING")
         SetTextCentre(1)
-        AddTextComponentString(text)
+        AddTextComponentString(player.text)
         DrawText(_x,_y)
+        drawProgressBar(_x-0.0150,_y+0.0310, 0.0350, 0.0085, {178,34,34, 100}, 100)
+        drawProgressBar(_x-0.0150,_y+0.0310, 0.0350, 0.0085, {178,34,34, 255}, player.health)
+        drawProgressBar(_x+0.0180,_y+0.0310, 0.0300, 0.0085, {105,105,105, 80}, 100)
+        drawProgressBar(_x+0.0180,_y+0.0310, 0.0300, 0.0085, {105,105,105, 200}, player.armour)
+
     end
 end
