@@ -60,8 +60,8 @@ Citizen.CreateThread(function()
 			local x,y,z = table.unpack(GetEntityCoords(ped))
 			for k,v in pairs(robbers) do
 				local distance = Vdist(x,y,z,v.x,v.y,v.z)
-				if distance <= 1.1 and GetEntityHealth(ped) > 101 then
-					drawText("PRESSIONE  ~r~E~w~  PARA INICIAR O ROUBO",4,0.5,0.93,0.50,255,255,255,180)
+				if distance <= 1.5 and GetEntityHealth(ped) > 101 then
+					DrawText3D(v.x, v.y, v.z, "PRESSIONE  ~r~E~w~  PARA INICIAR O ROUBO")
 					if IsControlJustPressed(0,38) and timedown <= 0 and vSERVER.checkPermission() then
 						if vSERVER.checkPolice() then
 							local ped = PlayerPedId()
@@ -224,3 +224,22 @@ RegisterNUICallback("lose", function(data, cb)
 		TriggerServerEvent("robberys:lose")
 	end
 end)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+--[ FUNÇÕES ]----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+function DrawText3D(x,y,z, text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    
+    SetTextScale(0.28, 0.28)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 370
+    DrawRect(_x,_y+0.0125, 0.005+ factor, 0.03, 41, 11, 41, 68)
+end

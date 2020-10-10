@@ -103,7 +103,7 @@ function vRP.searchReturn(source,user_id)
 	if search[user_id] == 0 or not search[user_id] then
 		return false
 	else
-		TriggerClientEvent("Notify",source,"importante","Aguarde "..vRPclient.getTimeFunction(source,parseInt(search[user_id]))..".",8000)
+		TriggerClientEvent("Notify",source,"importante","Você está procurado aguarde "..vRPclient.getTimeFunction(source,parseInt(search[user_id]))..".",8000)
 		return true
 	end
 end
