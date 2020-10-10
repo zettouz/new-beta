@@ -155,13 +155,7 @@ RegisterNUICallback("getReport", function(data, cb)
 end)
 
 RegisterNUICallback("sentencePlayer", function(data, cb)
-    local players = {}
-    for i = 0, 256 do
-        if GetPlayerServerId(i) ~= 0 then
-            table.insert(players, GetPlayerServerId(i))
-        end
-    end
-    TriggerServerEvent("mdt:sentencePlayer", data.jailtime, data.charges, data.char_id, data.fine, players)
+    TriggerServerEvent("mdt:sentencePlayer", data.jailtime, data.charges, data.char_id, data.fine)
     cb('ok')
 end)
 

@@ -432,6 +432,7 @@ const mdtApp = new Vue({
                     }
                 }
             }
+
             $.post('http://vrp_mdt/sentencePlayer', JSON.stringify({
                 char_id: this.report_selected.char_id,
                 jailtime: this.report_selected.jailtime,

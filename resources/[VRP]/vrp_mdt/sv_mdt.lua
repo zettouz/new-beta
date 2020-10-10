@@ -326,29 +326,22 @@ end)
 RegisterServerEvent("mdt:sentencePlayer")
 AddEventHandler("mdt:sentencePlayer", function(jailtime, charges, char_id, fine, players)
 	local usource = source
+	local src = vRP.getUserSource(char_id)
+
 	local jailmsg = ""
 	for offense, amount in pairs(charges) do
 		jailmsg = jailmsg .. " "..offense.." x"..amount.." |"
 	end
 
-	for _, src in pairs(players) do
-		if tonumber(src) ~= 0 and GetPlayerName(src) then
-			MySQL.Async.fetchAll('SELECT * FROM `vrp_user_identities` WHERE `user_id` = @id', {
-				['@id'] = char_id
-			}, function(result)
-				if result[1].user_id == char_id then
-					if jailtime and tonumber(jailtime) > 0 then
-						jailtime = math.ceil(jailtime)
-						TriggerEvent("mdt:jailPlayer", usource, src, jailtime, jailmsg)
-					end
-					if tonumber(fine) > 0 then
-						TriggerEvent("mdt:billPlayer", usource, src, 'Fine: '..jailmsg, fine)
-					end
-					return
-				end
-			end)
-		end
+
+	if jailtime and tonumber(jailtime) > 0 then
+		jailtime = math.ceil(jailtime)
+		TriggerEvent("mdt:jailPlayer", usource, src, jailtime, jailmsg)
 	end
+	if tonumber(fine) > 0 then
+		TriggerEvent("mdt:billPlayer", usource, src, 'Fine: '..jailmsg, fine)
+	end
+	return
 end)
 
 RegisterServerEvent("mdt:performReportSearch")
