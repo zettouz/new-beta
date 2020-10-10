@@ -950,6 +950,8 @@ function src.deleteVehicles()
 		local vehicle = vRPclient.getNearestVehicle(source,30)
 		if vehicle then
 			vCLIENT.deleteVehicle(source,vehicle)
+		else
+			TriggerClientEvent("Notify",source,"aviso","Não possui nenhum carro próximo.",10000)
 		end
 	end
 end

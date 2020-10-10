@@ -1669,8 +1669,12 @@ end)
 -- SPAWNVEHICLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback('spawnVehicles',function(data)
+	if data.name then
 		vSERVER.spawnVehicles(data.name,parseInt(pointspawn))
-		SendNUIMessage({ action = "dimissLoader" })
+	else
+		TriggerEvent("Notify","importante","Selecione um veículo para ser retirado.",8000)
+	end
+	SendNUIMessage({ action = "dimissLoader" })
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELETEVEHICLES
