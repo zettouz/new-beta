@@ -45,13 +45,12 @@ Citizen.CreateThread(
 
                         local armour = GetPedArmour(ped)
                         local health = (GetEntityHealth(ped)-100)/300*100
-                        if SVIDclient.getUseBlip(ped) then
+
+                        if SVIDclient.getUseBlip(pid) then
                             players[id] = {['text']= "<b><i>&#8721;</i> "..pid.." "..name.."</b>", ['health'] = health, ['armour'] = armour }
                         else
                             players[id] = {['text']= "<b>"..pid.." "..name.."</b>", ['health'] = health, ['armour'] = armour }
-                            
                         end
-
                         admin = SVIDclient.getPermissao()
                     end
                 end
@@ -65,7 +64,7 @@ Citizen.CreateThread(
 Citizen.CreateThread(
 	function()
 	    while true do
-	    	Citizen.Wait(5)
+            Citizen.Wait(5)
 	      	if blips then
 		        for _, id in ipairs(GetActivePlayers()) do
 			        x1, y1, z1 = table.unpack( GetEntityCoords( PlayerPedId(), true ) )

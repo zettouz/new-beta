@@ -42,10 +42,12 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- Esconde os ids
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRPidd.getUseBlip(sourceplayer)
-	local user_id = vRP.getUserId(source)
+function vRPidd.getUseBlip(user_id)
+	if blipsActive[user_id] then
+		return true
+	end
 
-	return blipsActive[user_id]
+	return false
 end	
 function vRPidd.addUseBlip(sourceplayer)
 	local source = source
