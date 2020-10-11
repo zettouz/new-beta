@@ -97,8 +97,7 @@ function src.grabMoney()
 	vCLIENT.startGrab(source, robbers[id].seconds)
 	vRPclient.playAnim(source,false,{{"anim@heists@ornate_bank@grab_cash_heels","grab",1}},true)
 	TriggerClientEvent("vrp_sound:source",source,'alarm',0.7)
-	-- vRPclient.setStandBY(source,parseInt(600))
-	print(x)
+
 	local policia = vRP.getUsersByPermission("policia.permissao")
 	for k,v in pairs(policia) do
 		local policial = vRP.getUserSource(v)
