@@ -5,10 +5,8 @@ const mdtApp = new Vue({
         officer: {
             name: "Guest"
         },
-
         offenses: [],
         warrants: [],
-
         homepage: {
             button_press: 0,
             reports: false,

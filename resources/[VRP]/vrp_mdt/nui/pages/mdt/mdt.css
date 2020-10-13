@@ -1,0 +1,76 @@
+div,span,applet,object,iframe,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,h3 { border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent; margin:0; padding:0; }
+
+body {
+    color: #c1a57b;
+}
+
+a {
+    color: #fff !important;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #c1a57b !important;
+    cursor: pointer;
+}
+
+a:hover, a:focus, a:active {
+    background: rgb(255,255,255, 0.2);
+}
+
+.navmenu a:hover, .navmenu a:focus, .navmenu a:active {
+    font-size: 16px;
+}
+
+.navmenu {
+    display: flex;
+    justify-content: space-between;
+	width: 1040px;
+	height: 54px;
+    background-color: #222831;
+}
+
+.navmenu a {
+	color: #fff;
+	padding: 15px;
+	font-weight: 700;
+    float: left;
+    text-decoration: none;
+}
+
+#content {
+    background: #30475e;
+    height: 566px;
+    max-height: 566px;
+}
+
+.col-50 {
+    height: 323px;
+    max-height: 323px;
+}
+
+.col-20 {
+    height: 150px;
+    max-height: 150px;
+}
+
+
+#mugshot {
+    display: inline-block;
+    max-width: 215px;
+    height: auto;
+    border: 2px solid #fbbe28;
+    user-select: none;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background: transparent;
+    border-color:  #c1a57b;
+}
+.nav-link.active {
+    color:  #c1a57b !important;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color:  #c1a57b;
+    background: transparent;
+}

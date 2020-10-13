@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="css.css" rel="stylesheet" type="text/css"/>
+		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+		<link rel="stylesheet" type="text/css" href="./pages/mdt/mdt.css"/>
+		<script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+		<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+	</head>
+	<body>
+		<div id="actionmenu">
+			<!-- Desktop -->
+			<div class="desktop" v-if="page == 'desktop'">
+				<div class="icons-dekstop">
+					<div class="icon-desktop">
+						<a @click="page = 'home'"><img src="mdt.jpg" alt=""><p>MDT</p></a>
+					</div>
+					<div class="icon-desktop">
+						<a href="../commander/index.html"><img src="mdt-comando.png" alt=""><p>MDT Comando</p></a>
+					</div>
+				</div>
+			</div>
+
+			<!-- MDT -->
+			<div id="mdt" v-if="page != 'desktop'">
+
+				<div class="navmenu">
+					<div>
+						<a @click.prevent="page = 'home'">Inicio</a>	
+						<a @click.prevent="page = 'people-show'">Pesquisar Pessoa</a>
+						<a @click.prevent="page = 'vehicles'">Pesquisar Veículos</a>
+						<a @click.prevent="page = 'reports'">Relatórios</a>	
+						<a @click.prevent="page = 'warrants'">Avisos</a>	
+					</div>
+					<div>
+						<a @click.prevent="page = 'desktop'">Voltar</a>
+					</div>
+				</div>
+			
+				<div id="content">
+					<!-- HOME PAGE -->
+					<div id="home" v-if="page == 'home'">
+						<b-container>
+							<b-row class="col-50 text-center">
+								<b-col cols="6" class="mt-2">
+									<h3>Relatórios Recentes</h3>
+									<h4 v-if="!homepage.reports.length"> Nenhuma informação </h4>
+								
+									<div v-if="homepage.reports.length" v-for="result in homepage.reports" class="mt-2">
+										<p>{{ result.date }} - ID: {{ result.id }}</p>
+										<b-button pill class="p-3" v-on:click="report_selected = result; changePage('Search Reports');">
+											{{ result.title }}
+										</b-button>
+									</div>
+								</b-col>
+								<b-col cols="6" class="mt-2">
+									<h3>Pessoas recentes</h3>
+									<h4 v-if="!homepage.persons.length"> Nenhuma informação </h4>
+									<span v-else-if="homepage.persons.length > 0" v-for="person in homepage.persons">
+										<b-button pill class="p-3" v-on:click="OpenOffenderDetailsById(person.id);">
+											{{ person.name }}  {{person.firstname}}
+										</b-button>
+									</span>
+								</b-col>
+							</b-row>
+							<b-row class="col-50 text-center">
+								<b-col cols="6">
+									<h3>Avisos Recentes</h3>
+									<h4 v-if="!homepage.warrants.length"> Nenhuma informação </h4>
+									<span v-else-if="homepage.warrants != false" v-for="warrant in homepage.warrants">
+										<p>{{ warrant.date }} - ID: {{ warrant.id }}</p>
+										<b-button pill class="p-3" v-on:click="warrant_selected = warrant; changePage('Warrant Details');">
+											{{ warrant.name }}
+										</b-button>
+									</span>
+								</b-col>
+								<b-col cols="6">
+									<h3>Veículos Recentes</h3>
+									<h4 v-if="!homepage.vehicles.length"> Nenhuma informação </h4>
+									<span v-else-if="homepage.vehicles.length > 0" v-for="vehicle in homepage.vehicles">
+										<b-button pill class="p-3" v-on:click="OpenVehicleDetails(vehicle);">
+											{{ vehicle.registration }} - {{ vehicle.owner }} - {{ vehicle.modelhash }}
+										</b-button>
+									</span>
+								</b-col>
+							</b-row>
+						</b-container>
+					</div>
+					<div id="people" v-if="page == 'people'">
+						<b-row no-gutters>
+							<b-col cols="12" class="d-flex justify-content-center align-items-center col-20">
+								<b-form-input style="width: 350px;" v-model="people.search" placeholder="Nome ou Identidade"></b-form-input>
+								<b-button pill class="ml-2">Procurar</b-button>
+							</b-col>
+						</b-row>
+						<b-row no-gutters>
+							<b-col cols="12" class="d-flex justify-content-center align-items-center col-20">
+								<div v-for="people in people.peoples">
+									<b-button pill class="p-3" v-on:click="OpenPeople(people);">
+										{{ people.name }} {{ people.firstname }}
+									</b-button>
+								</div>
+								<div v-if="people.peoples">
+									<h4> Nenhuma informação </h4>
+								</div>
+							</b-col>
+						</b-row>
+					</div>
+					<div id="people-show" v-if="page == 'people-show'">
+						<b-row no-gutters>
+							<b-col cols="4" class="d-flex justify-content-center align-items-center">
+								<img v-if="people.selected.mugshot_url" v-bind:src="images/people.selected.mugshot_url" alt="mugshot" id="mugshot">
+								<img v-else src="./pages/mdt/images/mugshot.png" alt="mugshot" id="mugshot">
+							</b-col>
+							<b-col cols="8">
+								<b-row no-gutters>
+									<b-col cols="6">
+										<h2 class="mt-2"><b>Passaporte:</b> <span class="text-white">1</span></h2>
+									
+										<h2 class="mt-2"><b>Nome:</b> <span class="text-white">Jackson Silva</span></h2>
+										<h2 class="mt-2"><b>Prisões:</b> <span class="text-white">1</span></h2>
+										<h2 class="mt-2"><b>Avisos:</b> <span class="text-white">1</span></h2>
+									</b-col>
+									<b-col cols="6">
+										<h2 class="mt-2"><b>RG:</b> <span class="text-white">FSD57874S</span></h2>
+										<h2 class="mt-2"><b>Idade:</b> <span class="text-white">21</span></h2>
+										<h2 class="mt-2"><b>Multas:</b> <span class="text-white">1</span></h2>
+									</b-col>
+								</b-row>
+							</b-col>
+						</b-row>
+					
+					
+						<b-row no-gutters class="mt-4">
+							<b-col cols="12">
+								<b-tabs content-class="mt-3" justified>
+									<b-tab title="Relatórios" active>
+										<p>I'm the first tab</p>
+									</b-tab>
+									<b-tab title="Avisos">
+										<p>I'm the second tab</p>
+									</b-tab>
+									<b-tab title="Multas">
+										<p>I'm the tab with the very, very long title</p>
+									</b-tab>
+									<b-tab title="Veículos">
+										<p>I'm the tab with the very, very long title</p>
+									</b-tab>
+								</b-tabs>
+							</b-col>
+						</b-row>
+					</div>
+			
+					<div id="vehicles" v-if="page == 'vehicles'">
+						<b-row no-gutters>
+							<b-col cols="12" class="d-flex justify-content-center align-items-center col-20">
+								<b-form-input style="width: 350px;" v-model="vehicles.search" placeholder="Placa do veículo"></b-form-input>
+								<b-button pill class="ml-2">Procurar</b-button>
+							</b-col>
+						</b-row>
+						<b-row no-gutters>
+							<b-col cols="12" class="d-flex justify-content-center align-items-center col-20">
+								<div v-for="vehicle in vehicles.vehicles">
+									<b-button pill class="p-3" v-on:click="OpenVehicle(vehicle);">
+										{{ vehicle.registration }} - {{ vehicle.owner }} - {{ vehicle.modelhash }}
+									</b-button>
+								</div>
+								<div v-if="vehicles.vehicles">
+									<h4> Nenhuma informação </h4>
+								</div>
+							</b-col>
+						</b-row>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<button id="actionbuttom"></button>
+		<script src="jquery.js" type="text/javascript"></script>
+		
+		<script src="./pages/mdt/mdt.js"></script>
+	</body>
+
+</html>

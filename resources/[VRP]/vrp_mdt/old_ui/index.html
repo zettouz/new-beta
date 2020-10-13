@@ -2,7 +2,7 @@
 <head>
     <style>
         body {
-            display: none;
+            display: block;
         }
         #content {
             position: absolute;
@@ -251,8 +251,8 @@
 <body>
     <div id="content">
         <div class="line" style="top: 10%;"></div>
-        <img src="badge.png" id="badge" class="noselect">
-        <img src="footer.png" id="banner" class="noselect">
+        <img src="images/badge.png" id="badge" class="noselect">
+        <img src="images/footer.png" id="banner" class="noselect">
         
         <p class="noselect" style="font-family: 'Georgia'; font-style: italic; font-size: 20pt; text-align: center;">National Crime Information Center</p>
         <p class="noselect" style="position: fixed; left: 17%; top: 5.5%">Welcome, {{ officer.name }}.</p>
@@ -490,8 +490,8 @@
                     </div>
 
                     <div v-else-if="offender_results.results == false">
-                        <img v-if="offender_selected.mugshot_url" v-bind:src="offender_selected.mugshot_url" alt="mugshot" id="mugshot">
-                        <img v-else-if="offender_selected.mugshot_url == ''" src="mugshot.png" alt="mugshot" id="mugshot">
+                        <img v-if="offender_selected.mugshot_url" v-bind:src="images/offender_selected.mugshot_url" alt="mugshot" id="mugshot">
+                        <img v-else-if="offender_selected.mugshot_url == ''" src="images/mugshot.png" alt="mugshot" id="mugshot">
                     </div>
                 </div>
 
@@ -735,12 +735,12 @@
     </div> 
 
 
-    <script src="vue.min.js"></script>
+    <script src="js/vue.min.js"></script>
     <script
         src = "https://code.jquery.com/jquery-3.3.1.min.js"
         integrity = "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin = "anonymous">
     </script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

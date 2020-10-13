@@ -59,8 +59,8 @@ AddEventHandler("mdt:toggleVisibilty", function(reports, warrants, officer)
         ClearPedTasks(playerPed)
         tabletObject = nil
     end
-    if #warrants == 0 then warrants = false end
-    if #reports == 0 then reports = false end
+    -- if #warrants == 0 then warrants = false end
+    -- if #reports == 0 then reports = false end
     SendNUIMessage({
         type = "recentReportsAndWarrantsLoaded",
         reports = reports,
